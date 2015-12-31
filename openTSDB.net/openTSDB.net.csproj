@@ -40,8 +40,11 @@
   <ItemGroup>
     <Compile Include="DateTimeExtentions.cs" />
     <Compile Include="IHostNameProvider.cs" />
+    <Compile Include="IOpenTsdbManager.cs" />
     <Compile Include="models\SingleDataPoint.cs" />
     <Compile Include="models\TagsCollection.cs" />
+    <Compile Include="OpenTsdbFactory.cs" />
+    <Compile Include="OpenTsdbManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagNames.cs" />
     <Compile Include="TagsCollectionExtentions.cs" />
