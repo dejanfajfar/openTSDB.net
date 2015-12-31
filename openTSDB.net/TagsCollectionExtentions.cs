@@ -5,12 +5,12 @@ namespace openTsdbNet
 {
     public static class TagsCollectionExtentions
     {
-        public static TagsCollection AddTag(this TagsCollection tagsCollection, string tagName, string tagValue)
+        public static TagsCollection SetTag(this TagsCollection tagsCollection, string tagName, string tagValue)
         {
             if(string.IsNullOrWhiteSpace(tagName)) throw new ArgumentException("Tag name can not be null or empty", nameof(tagName));
             if(string.IsNullOrWhiteSpace(tagValue)) throw new ArgumentException("Tag value can not be null or empty", nameof(tagValue));
 
-            tagsCollection?.Add(tagName, tagValue);
+            tagsCollection[tagName] = tagValue;
 
             return tagsCollection;
         }
@@ -22,12 +22,12 @@ namespace openTsdbNet
                 throw new ArgumentException("The host name may not be null", nameof(hostName));
             }
 
-            return tagsCollection.AddTag(TagNames.HOST, hostName);
+            return tagsCollection.SetTag(TagNames.HOST, hostName);
         }
 
         public static TagsCollection SetHost(this TagsCollection tagsCollection, IHostNameProvider hostNameProvider)
         {
-            return tagsCollection.AddTag(TagNames.HOST, hostNameProvider?.GetHostName());
+            return tagsCollection.SetTag(TagNames.HOST, hostNameProvider?.GetHostName());
         }
     }
 }
