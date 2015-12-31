@@ -9,6 +9,6 @@ before_build:
   - nuget restore
 build:
   verbosity: minimal
-arifacts:
-  - path: '*.nupkg'
+artifacts:
+- path: '**/*.nupkg'
   name: packages
