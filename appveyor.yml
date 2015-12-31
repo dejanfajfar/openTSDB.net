@@ -13,5 +13,5 @@ build:
   include_nuget_references: true
   verbosity: minimal
 artifacts:
-- path: '**/*.nupkg'
+- path: '*.nupkg'
   name: packages
