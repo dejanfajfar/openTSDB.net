@@ -9,17 +9,17 @@ namespace openTsdbNet.Tests
         [Test]
         public void GetUnixEpochFromValidDateTime()
         {
-            var epoch = new DateTime(2015, 12, 12).ToUnixEpoch();
+            var epoch = new DateTime(2015, 12, 12, 0, 0, 0, DateTimeKind.Utc).ToUnixEpoch();
 
-            Assert.That(epoch, Is.EqualTo(1449874800));
+            Assert.That(epoch, Is.EqualTo(1449878400));
         }
 
         [Test]
         public void GetUnixEpochFromDateBefore1970()
         {
-            var epoch = new DateTime(1960, 12, 12).ToUnixEpoch();
+            var epoch = new DateTime(1960, 12, 12, 0, 0, 0, DateTimeKind.Utc).ToUnixEpoch();
 
-            Assert.That(epoch, Is.EqualTo(-285728400));
+            Assert.That(epoch, Is.EqualTo(-285724800));
         }
 
 
