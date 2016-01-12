@@ -1,15 +1,16 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>openTSDB.net</id>
-     <authors>dejan@fajfar.com</authors>
-    <owners>dejan@fajfar.com</owners>
-    <projectUrl>https://github.com/dejanfajfar/openTSDB.net</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<id>openTSDB.net</id>
+	<version>$version$</version>
+	<authors>dejan@fajfar.com</authors>
+	<owners>dejan@fajfar.com</owners>
+	<projectUrl>https://github.com/dejanfajfar/openTSDB.net</projectUrl>
+	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<summary>openTSDB client for .NET</summary>
-    <description>
+	<description>
 		Implements a simple openTSDB client for .NET
-    </description>
+	</description>
   </metadata>
   <files>
   </files>
