@@ -18,10 +18,12 @@ namespace openTsdbNet.Tests
         [Test]
         public void ToUnixEpoch_After1970_Local_DateTime()
         {
-            var foo = new DateTimeOffset(2015, 12, 12, 0, 0, 0, TimeSpan.FromHours(2));
-            var epoch = foo.DateTime.ToUnixEpoch();
+            var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+            var dateTime = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(2015, 12, 12, 0, 0, 0, DateTimeKind.Utc),
+                timeZoneInfo);
+            var epoch = dateTime.ToUnixEpoch();
 
-            Assert.That(epoch, Is.EqualTo(1449874800));
+            Assert.That(epoch, Is.EqualTo(1449878400));
         }
 
         [Test]
@@ -35,10 +37,12 @@ namespace openTsdbNet.Tests
         [Test]
         public void ToUnixEpoch_Before1970_Local_DateTime()
         {
-            var foo = new DateTimeOffset(1960, 12, 12, 0, 0, 0, TimeSpan.FromHours(2));
-            var epoch = foo.DateTime.ToUnixEpoch();
+            var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
+            var dateTime = TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1960, 12, 12, 0, 0, 0, DateTimeKind.Utc),
+                timeZoneInfo);
+            var epoch = dateTime.ToUnixEpoch();
 
-            Assert.That(epoch, Is.EqualTo(-285728400));
+            Assert.That(epoch, Is.EqualTo(-285724800));
         }
     }
 }
