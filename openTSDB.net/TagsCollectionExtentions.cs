@@ -24,10 +24,5 @@ namespace openTSDB.net
 
             return tagsCollection.SetTag(TagNames.HOST, hostName);
         }
-
-        public static TagsCollection SetHost(this TagsCollection tagsCollection, IHostNameProvider hostNameProvider)
-        {
-            return tagsCollection.SetTag(TagNames.HOST, hostNameProvider?.GetHostName());
-        }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
-using openTSDB.net;
 using openTSDB.net.Models;
 
-namespace openTsdbNet.Tests
+namespace openTSDB.net.Tests
 {
     [TestFixture]
     public class ModelSerializationFixture

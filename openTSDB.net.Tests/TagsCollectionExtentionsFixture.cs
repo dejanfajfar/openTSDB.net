@@ -1,10 +1,8 @@
 ﻿using System;
-using Moq;
 using NUnit.Framework;
-using openTSDB.net;
 using openTSDB.net.Models;
 
-namespace openTsdbNet.Tests
+namespace openTSDB.net.Tests
 {
     [TestFixture]
     public class TagsCollectionExtentionsFixture
@@ -32,39 +30,11 @@ namespace openTsdbNet.Tests
         }
 
         [Test]
-        public void Given_EmptyTagCollection_When_SetHostWithNameProvider_Then_HostNameSet()
-        {
-            var hostNameProvider = new Mock<IHostNameProvider>();
-            hostNameProvider.Setup(m => m.GetHostName()).Returns(TEST_HOSTNAME);
-
-            tags.SetHost(hostNameProvider.Object);
-
-            Assert.That(tags, Is.Not.Empty);
-            Assert.True(tags.ContainsKey(TagNames.HOST));
-            Assert.That(tags[TagNames.HOST], Is.EqualTo(TEST_HOSTNAME));
-        }
-
-        [Test]
         public void Given_NonEmptyTagCollection_When_SetHostWithClearTextName_Then_HostNameSet()
         {
             tags.SetHost(TEST_HOSTNAME);
 
             tags.SetHost("TestHost2");
-
-            Assert.That(tags, Is.Not.Empty);
-            Assert.True(tags.ContainsKey(TagNames.HOST));
-            Assert.That(tags[TagNames.HOST], Is.EqualTo("TestHost2"));
-        }
-
-        [Test]
-        public void Given_NonEmptyTagColection_When_SetHostWithNameProvider_Then_HostNameSet()
-        {
-            var hostNameProvider = new Mock<IHostNameProvider>();
-            hostNameProvider.Setup(m => m.GetHostName()).Returns("TestHost2");
-
-            tags.SetHost(TEST_HOSTNAME);
-
-            tags.SetHost(hostNameProvider.Object);
 
             Assert.That(tags, Is.Not.Empty);
             Assert.True(tags.ContainsKey(TagNames.HOST));

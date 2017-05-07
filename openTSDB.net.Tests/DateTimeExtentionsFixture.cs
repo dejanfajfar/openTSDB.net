@@ -1,8 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using openTSDB.net;
 
-namespace openTsdbNet.Tests
+namespace openTSDB.net.Tests
 {
     [TestFixture]
     public class DateTimeExtentionsFixture

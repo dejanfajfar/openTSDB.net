@@ -20,6 +20,6 @@ namespace openTSDB.net.Models
         public TVal Value { get; set; }
 
         [DataMember(Name = "tags", Order = 99)]
-        public TagsCollection Tags { get; }
+        public TagsCollection Tags { get; set; }
     }
 }

@@ -1,22 +1,16 @@
-﻿using System;
-using openTSDB.net.Models;
+﻿using openTSDB.net.Models;
 
 namespace openTSDB.net
 {
-    public class OpenTsdbFactory
+    public static class OpenTsdbFactory
     {
-        protected Uri OpenTsdbServerUri { get; }
+        private static IOpenTsdbManager instance;
 
-        public OpenTsdbFactory(Uri openTsdbServerUri)
+        public static IOpenTsdbManager TsdbManager(TsdbOptions options) => new OpenTsdbManager(options);
+
+        public static IOpenTsdbManager TsdbManagerSingelton(TsdbOptions options)
         {
-            OpenTsdbServerUri = openTsdbServerUri;
+            return instance ?? (instance = TsdbManager(options));
         }
-
-        public OpenTsdbFactory(TsdbFactoryOptions options)
-        {
-
-        }
-
-        public IOpenTsdbManager TsdbManager => new OpenTsdbManager(OpenTsdbServerUri);
     }
 }

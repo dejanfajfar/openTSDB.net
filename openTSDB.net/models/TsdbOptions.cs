@@ -2,7 +2,7 @@
 
 namespace openTSDB.net.Models
 {
-    public class TsdbFactoryOptions
+    public class TsdbOptions
     {
         public Uri OpenTsdbServerUri { get; set; }
 

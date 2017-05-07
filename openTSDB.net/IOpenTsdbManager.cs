@@ -8,5 +8,7 @@ namespace openTSDB.net
         void Push<T>(SingleDataPoint<T> dataPoint);
 
         void Push<T>(IList<SingleDataPoint<T>> dataPoints);
+
+        void Push<T>(string name, T value);
     }
 }

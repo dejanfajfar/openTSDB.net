@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using openTSDB.net.Models;
 
 namespace openTSDB.net.Network
 {
@@ -8,19 +7,31 @@ namespace openTSDB.net.Network
     {
         public const string API_PUSH = "api/push";
 
-        public OpenTsdbIntegration(string openTsdbApiEndpoint)
+        public OpenTsdbIntegration(Uri openTsdbApiEndpoint)
         {
-            this.openTsdbApiEndpoint = openTsdbApiEndpoint;
+            OpenTsdbApiEndpoint = openTsdbApiEndpoint;
         }
         
-        public string openTsdbApiEndpoint { get; }
+        public Uri OpenTsdbApiEndpoint { get; }
 
-        public void PublishData<T>(SingleDataPoint<T> dataPoint)
+        public async void PublishDataAsync(byte[] data)
         {
-            var endpoint = new Uri(new Uri(openTsdbApiEndpoint), API_PUSH);
+            var endpoint = new Uri(OpenTsdbApiEndpoint, API_PUSH);
             var request = WebRequest.Create(endpoint);
             request.Method = "POST";
-            
+            request.ContentType = "application/json";
+            request.ContentLength = data.Length;
+
+            request.Headers.Add("Acepts", "Application/json");
+
+            using (var requestStream = request.GetRequestStream())
+            {
+                requestStream.Write(data, 0, data.Length);
+            }
+
+            var response = await request.GetResponseAsync() as HttpWebResponse;
+
+
         }
 
     }
