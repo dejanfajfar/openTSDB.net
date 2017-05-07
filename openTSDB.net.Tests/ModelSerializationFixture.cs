@@ -21,7 +21,7 @@ namespace openTSDB.net.Tests
             var serializedDataPoint = Serializer.Stringify(CreateTestDataPoint(15));
 
             Assert.That(serializedDataPoint, Is.Not.Empty);
-            Assert.That(serializedDataPoint, Is.EqualTo("{\"metric\":\"testMetric\",\"timestamp\":1449874800,\"value\":15,\"tags\":{\"host\":\"testHost\"}}"));
+            Assert.That(serializedDataPoint, Is.EqualTo("{\"metric\":\"testMetric\",\"timestamp\":1449878400,\"value\":15,\"tags\":{\"host\":\"testHost\"}}"));
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace openTSDB.net.Tests
             var serializedDataPoint = Serializer.Stringify(new [] { CreateTestDataPoint(15), CreateTestDataPoint(14) });
 
             Assert.That(serializedDataPoint, Is.Not.Empty);
-            Assert.That(serializedDataPoint, Is.EqualTo("[{\"metric\":\"testMetric\",\"timestamp\":1449874800,\"value\":15,\"tags\":{\"host\":\"testHost\"}},{\"metric\":\"testMetric\",\"timestamp\":1449874800,\"value\":14,\"tags\":{\"host\":\"testHost\"}}]"));
+            Assert.That(serializedDataPoint, Is.EqualTo("[{\"metric\":\"testMetric\",\"timestamp\":1449878400,\"value\":15,\"tags\":{\"host\":\"testHost\"}},{\"metric\":\"testMetric\",\"timestamp\":1449878400,\"value\":14,\"tags\":{\"host\":\"testHost\"}}]"));
         }
 
 
@@ -41,7 +41,7 @@ namespace openTSDB.net.Tests
             {
                 Value = value,
                 Metric = "testMetric",
-                Timestamp = new DateTime(2015, 12, 12).ToUnixEpoch(),
+                Timestamp = new DateTime(2015, 12, 12, 0, 0, 0, DateTimeKind.Utc).ToUnixEpoch(),
                 Tags =
                 {
                     {"host", "testHost"}
