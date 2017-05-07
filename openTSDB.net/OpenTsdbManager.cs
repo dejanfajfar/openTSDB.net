@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using openTsdbNet.models;
+using openTSDB.net.Models;
 
-namespace openTsdbNet
+namespace openTSDB.net
 {
     public class OpenTsdbManager : IOpenTsdbManager
     {

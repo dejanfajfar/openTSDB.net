@@ -1,7 +1,6 @@
-﻿
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
-namespace openTsdbNet.models
+namespace openTSDB.net.Models
 {
     [DataContract]
     public class SingleDataPoint<TVal>

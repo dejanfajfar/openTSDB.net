@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace openTsdbNet
+namespace openTSDB.net
 {
     public static class DateTimeExtentions
     {

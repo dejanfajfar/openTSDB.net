@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
-using openTsdbNet.models;
+using openTSDB.net.Models;
 
-namespace openTsdbNet.Network
+namespace openTSDB.net.Network
 {
     public class OpenTsdbIntegration
     {

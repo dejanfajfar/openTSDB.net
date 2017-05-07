@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using openTsdbNet.models;
+using openTSDB.net.Models;
 
-namespace openTsdbNet
+namespace openTSDB.net
 {
     public class ModelSerializer
     {

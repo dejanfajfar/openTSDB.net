@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace openTsdbNet.models
+namespace openTSDB.net.Models
 {
     public class TagsCollection : Dictionary<string, string>
     {

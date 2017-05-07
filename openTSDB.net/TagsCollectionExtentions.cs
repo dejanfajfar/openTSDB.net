@@ -1,7 +1,7 @@
 ﻿using System;
-using openTsdbNet.models;
+using openTSDB.net.Models;
 
-namespace openTsdbNet
+namespace openTSDB.net
 {
     public static class TagsCollectionExtentions
     {

@@ -1,4 +1,4 @@
-﻿namespace openTsdbNet
+﻿namespace openTSDB.net
 {
     public sealed class TagNames
     {

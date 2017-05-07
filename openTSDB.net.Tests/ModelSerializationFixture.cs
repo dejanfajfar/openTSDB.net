@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using openTsdbNet.models;
+using openTSDB.net;
+using openTSDB.net.Models;
 
 namespace openTsdbNet.Tests
 {

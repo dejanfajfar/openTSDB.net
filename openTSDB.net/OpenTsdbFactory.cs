@@ -1,6 +1,7 @@
 ﻿using System;
+using openTSDB.net.Models;
 
-namespace openTsdbNet
+namespace openTSDB.net
 {
     public class OpenTsdbFactory
     {
@@ -9,6 +10,11 @@ namespace openTsdbNet
         public OpenTsdbFactory(Uri openTsdbServerUri)
         {
             OpenTsdbServerUri = openTsdbServerUri;
+        }
+
+        public OpenTsdbFactory(TsdbFactoryOptions options)
+        {
+
         }
 
         public IOpenTsdbManager TsdbManager => new OpenTsdbManager(OpenTsdbServerUri);

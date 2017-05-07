@@ -48,6 +48,7 @@
     <Compile Include="ModelSerializer.cs" />
     <Compile Include="Models\SingleDataPoint.cs" />
     <Compile Include="Models\TagsCollection.cs" />
+    <Compile Include="Models\TsdbFactoryOptions.cs" />
     <Compile Include="Network\OpenTsdbIntegration.cs" />
     <Compile Include="OpenTsdbFactory.cs" />
     <Compile Include="OpenTsdbManager.cs" />
