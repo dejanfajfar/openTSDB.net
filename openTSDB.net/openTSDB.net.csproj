@@ -43,11 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DateTimeExtentions.cs" />
+    <Compile Include="Exceptions\OpenTsdbSubmissionException.cs" />
     <Compile Include="IOpenTsdbManager.cs" />
     <Compile Include="ModelSerializer.cs" />
     <Compile Include="Models\SingleDataPoint.cs" />
     <Compile Include="Models\TagsCollection.cs" />
     <Compile Include="Models\TsdbOptions.cs" />
+    <Compile Include="Models\TsdbSubmissionResponse.cs" />
     <Compile Include="Network\OpenTsdbIntegration.cs" />
     <Compile Include="OpenTsdbFactory.cs" />
     <Compile Include="OpenTsdbManager.cs" />

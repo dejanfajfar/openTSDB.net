@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using openTSDB.net.Models;
 using openTSDB.net.Network;
 
@@ -16,9 +18,11 @@ namespace openTSDB.net
             TsdbServer = new OpenTsdbIntegration(options.OpenTsdbServerUri);
         }
 
-        public void Push<T>(SingleDataPoint<T> dataPoint)
+        public async Task<TsdbSubmissionResponse> Push<T>(SingleDataPoint<T> dataPoint)
         {
-            TsdbServer.PublishDataAsync(dataPoint.Bytify());
+            Trace.Write(dataPoint.Stringify());
+            return await TsdbServer.PublishDataAsync(dataPoint.Bytify());
+
         }
 
         public void Push<T>(IList<SingleDataPoint<T>> dataPoints)
@@ -26,9 +30,9 @@ namespace openTSDB.net
             TsdbServer.PublishDataAsync(dataPoints.Bytify());
         }
 
-        public void Push<T>(string name, T value)
+        public async Task<TsdbSubmissionResponse> Push<T>(string name, T value)
         {
-            Push(new SingleDataPoint<T>
+            return await Push(new SingleDataPoint<T>
             {
                 Metric = name,
                 Value = value,

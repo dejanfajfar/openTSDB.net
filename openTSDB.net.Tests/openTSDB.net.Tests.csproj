@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DateTimeExtentionsFixture.cs" />
+    <Compile Include="Integration\OpenTsdbIntegrationFixture.cs" />
     <Compile Include="ModelSerializationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagsCollectionExtentionsFixture.cs" />
