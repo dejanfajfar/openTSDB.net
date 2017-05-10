@@ -6,6 +6,7 @@
 
 * * *
 
-[![Build status](https://ci.appveyor.com/api/projects/status/pjcln0nojvv3lapp?svg=true)](https://ci.appveyor.com/project/dejanfajfar/opentsdb-net)
+[![codecov](https://codecov.io/gh/dejanfajfar/openTSDB.net/branch/master/graph/badge.svg)](https://codecov.io/gh/dejanfajfar/openTSDB.net)
 
-Master branch => [![Build status](https://ci.appveyor.com/api/projects/status/pjcln0nojvv3lapp/branch/master?svg=true)](https://ci.appveyor.com/project/dejanfajfar/opentsdb-net/branch/master)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/pjcln0nojvv3lapp?svg=true)](https://ci.appveyor.com/project/dejanfajfar/opentsdb-net)
