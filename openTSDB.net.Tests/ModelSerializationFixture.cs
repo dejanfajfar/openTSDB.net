@@ -42,10 +42,7 @@ namespace openTSDB.net.Tests
                 Value = value,
                 Metric = "testMetric",
                 Timestamp = new DateTime(2015, 12, 12, 0, 0, 0, DateTimeKind.Utc).ToUnixEpoch(),
-                Tags =
-                {
-                    {"host", "testHost"}
-                }
+                Tags = new TagsCollection("testHost")
             };
         } 
     }
