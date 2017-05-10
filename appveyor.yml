@@ -16,9 +16,8 @@ build:
   publish_nuget_symbols: true
   include_nuget_references: true
   verbosity: detailed
-test_script:
-  - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:" -noshadow" -output:"coverage.xml" -filter:"+[openTSDB.net*]* -[openTSDB.net.Tests*]*"
 after_test:
+  - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:" -noshadow" -output:"coverage.xml" -filter:"+[openTSDB.net*]* -[openTSDB.net.Tests*]*"
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
