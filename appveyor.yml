@@ -1,7 +1,6 @@
 version: 0.1.{build}-{branch}
 image:
 - Visual Studio 2017
-- Visual Studio 2015
 configuration: Release
 assembly_info:
   patch: true
@@ -22,7 +21,7 @@ test:
     except:
     - Integration
 after_test:
-- .\packages\OpenCover.4.6.247-rc\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\opentsdb-net\openTSDB.net\openTSDB.net.Test\bin\Debug\openTsdb.net.Test.dll -noshadow -appveyor" -returntargetcode -filter:"+[openTsdb*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -excludebyfile:*\*Designer.cs -hideskipped:All -output:.\coverage.xml
+- .\packages\OpenCover.4.6.247-rc\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"C:\projects\opentsdb-net\openTSDB.net\openTSDB.net.Tests\bin\Debug\openTsdb.net.Tests.dll -noshadow -appveyor" -returntargetcode -filter:"+[openTsdb*]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -excludebyfile:*\*Designer.cs -hideskipped:All -output:.\coverage.xml
 - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
 - pip install codecov
 - codecov -f "coverage.xml"
