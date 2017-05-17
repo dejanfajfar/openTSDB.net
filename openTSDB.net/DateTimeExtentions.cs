@@ -2,6 +2,9 @@
 
 namespace openTSDB.net
 {
+    /// <summary>
+    /// Extens the
+    /// </summary>
     public static class DateTimeExtentions
     {
         public static int ToUnixEpoch(this DateTime dateTime)

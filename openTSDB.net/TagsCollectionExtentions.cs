@@ -26,10 +26,5 @@ namespace openTSDB.net
         {
             return tagsCollection[DefaultValues.Tags.HOST];
         }
-
-        public static TagsCollection Clone(this TagsCollection tagsCollection)
-        {
-            return tagsCollection ?? new TagsCollection();
-        }
     }
 }
