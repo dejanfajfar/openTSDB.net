@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Epoch.net;
 using openTSDB.net.Models;
 using openTSDB.net.Network;
 
@@ -18,25 +19,25 @@ namespace openTSDB.net
             TsdbServer = new OpenTsdbIntegration(options.OpenTsdbServerUri);
         }
 
-        public async Task<TsdbSubmissionResponse> Push<T>(SingleDataPoint<T> dataPoint)
+        public async Task<TsdbSubmissionResponse> Push<T>(DataPoint<T> dataPoint)
         {
             Trace.Write(dataPoint.Stringify());
             return await TsdbServer.PublishDataAsync(dataPoint.Bytify());
 
         }
 
-        public void Push<T>(IList<SingleDataPoint<T>> dataPoints)
+        public async Task<TsdbSubmissionResponse> Push<T>(IList<DataPoint<T>> dataPoints)
         {
-            TsdbServer.PublishDataAsync(dataPoints.Bytify());
+            return await TsdbServer.PublishDataAsync(dataPoints.Bytify());
         }
 
         public async Task<TsdbSubmissionResponse> Push<T>(string name, T value)
         {
-            return await Push(new SingleDataPoint<T>
+            return await Push(new DataPoint<T>
             {
                 Metric = name,
                 Value = value,
-                Timestamp = DateTime.Now.ToUnixEpoch(),
+                Timestamp = DateTime.Now.ToEpoch(),
                 Tags = Options.DefaultTags
             });
         }

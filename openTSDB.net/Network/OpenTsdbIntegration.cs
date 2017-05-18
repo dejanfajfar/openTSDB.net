@@ -10,7 +10,7 @@ namespace openTSDB.net.Network
     /// <summary>
     /// Network integration layer
     /// </summary>
-    public class OpenTsdbIntegration
+    internal class OpenTsdbIntegration : IOpenTsdbNetworkBridge
     {
         /// <summary>
         /// The relative path to the put endpoint
@@ -37,7 +37,7 @@ namespace openTSDB.net.Network
         /// <param name="data">The data point to be published</param>
         /// <returns>The data point submission result</returns>
         /// <exception cref="OpenTsdbSubmissionException">
-        /// If a error
+        /// If a error occures durring data submission or if the openTsdb return code os not 204
         /// </exception>
         public async Task<TsdbSubmissionResponse> PublishDataAsync(byte[] data)
         {

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Epoch.net, Version=0.1.4.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Epoch.net.0.1.4\lib\net45\Epoch.net.dll</HintPath>
+    </Reference>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
@@ -49,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DateTimeExtentionsFixture.cs" />
+    <Compile Include="DataPointFixtures\ByteSerilizationFixture.cs" />
+    <Compile Include="DataPointFixtures\StringSerializationFixture.cs" />
     <Compile Include="Integration\OpenTsdbIntegrationFixture.cs" />
-    <Compile Include="ModelSerializationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagsCollectionFixtures\Given_DefultConstructor.cs" />
     <Compile Include="TagsCollectionFixtures\Given_HostName.cs" />
@@ -64,6 +67,14 @@
       <Project>{782de99b-3c67-4198-b426-34754c53fb6d}</Project>
       <Name>openTSDB.net</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataPointFixtures\DataPointListSample.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataPointFixtures\DataPointSample.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

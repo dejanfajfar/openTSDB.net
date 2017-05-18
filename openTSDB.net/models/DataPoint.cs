@@ -7,7 +7,7 @@ namespace openTSDB.net.Models
     /// </summary>
     /// <typeparam name="TVal"></typeparam>
     [DataContract]
-    public class SingleDataPoint<TVal>
+    public class DataPoint<TVal>
     {
         /// <summary>
         /// Gets or sets the metrics name to be used
@@ -19,9 +19,6 @@ namespace openTSDB.net.Models
         /// <summary>
         /// The timestamp of the data event in unix Epoch format
         /// </summary>
-        /// <remarks>
-        /// A Epoch helper in the form of a DateTiem Extention is provided <see cref="DateTimeExtentions"/>
-        /// </remarks>
         [DataMember(Name = "timestamp")]
         public int Timestamp { get; set; }
 
