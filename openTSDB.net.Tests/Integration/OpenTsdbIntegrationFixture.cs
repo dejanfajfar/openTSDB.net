@@ -16,10 +16,7 @@ namespace openTSDB.net.Tests.Integration
             var pushResult = OpenTsdbFactory.TsdbManager(new TsdbOptions
             {
                 OpenTsdbServerUri = new Uri(_openTsdbUrl),
-                DefaultTags = new TagsCollection
-                {
-                    {"host", "DFMac01"}
-                }
+                DefaultTags = new TagsCollection("DFMac01")
             }).Push("ping", new Random().Next());
 
             Assert.That(pushResult.Result.ResponseHttpStatusCode, Is.EqualTo(204));
