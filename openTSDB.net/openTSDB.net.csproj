@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorMessages.cs" />
     <Compile Include="Exceptions\OpenTsdbSubmissionException.cs" />
     <Compile Include="IOpenTsdbManager.cs" />
     <Compile Include="Models\DataPoint.cs" />
@@ -57,7 +58,6 @@
     <Compile Include="OpenTsdbManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataPointExtentions.cs" />
-    <Compile Include="DefaultValues.cs" />
     <Compile Include="TagsCollectionExtentions.cs" />
   </ItemGroup>
   <ItemGroup>

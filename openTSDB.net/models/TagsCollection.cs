@@ -9,6 +9,16 @@ namespace openTSDB.net.Models
     public class TagsCollection : Dictionary<string, string>
     {
         /// <summary>
+        /// Defines the constant data point origin tag name
+        /// </summary>
+        public const string HOST = "host";
+
+        /// <summary>
+        /// Defines the UNKNOWN constant
+        /// </summary>
+        public const string UNKWNOWN = "unknown";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TagsCollection"/>
         /// with the host set to UNKNOWN
         /// </summary>
@@ -16,7 +26,7 @@ namespace openTSDB.net.Models
         /// A Tag collection must contain at least one key value pair and that is the HOST name
         /// This constructor sets the host name to UNKNOWN
         /// </remarks>
-        public TagsCollection() : this(DefaultValues.UNKWNOWN) {}
+        public TagsCollection() : this(UNKWNOWN) {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TagsCollection"/>
@@ -30,9 +40,9 @@ namespace openTSDB.net.Models
         {
             if (string.IsNullOrWhiteSpace(hostName))
             {
-                throw new ArgumentException(DefaultValues.Messages.HOST_NAME_INVALID_ERROR_MESSAGE, nameof(hostName));
+                throw new ArgumentException(ErrorMessages.HOST_NAME_INVALID_ERROR_MESSAGE, nameof(hostName));
             }
-            Add(DefaultValues.Tags.HOST, hostName);
+            Add(HOST, hostName);
         }
     }
 }

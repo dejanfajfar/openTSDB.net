@@ -12,5 +12,16 @@ namespace openTSDB.net
         {
             return instance ?? (instance = TsdbManager(options));
         }
+
+        public static IOpenTsdbManager CreateNew(TsdbOptions options) => new OpenTsdbManager(options);
+
+        public static IOpenTsdbManager GetExisting(TsdbOptions options)  => new OpenTsdbManager(options);
+
+        public static IOpenTsdbManager CreateNamed(string name, TsdbOptions options) => new OpenTsdbManager(options);
+
+        public static IOpenTsdbManager GetNamed(string Name)
+        {
+            return instance;
+        }
     }
 }

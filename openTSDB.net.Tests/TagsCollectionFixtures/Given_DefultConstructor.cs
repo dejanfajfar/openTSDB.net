@@ -7,26 +7,26 @@ namespace openTSDB.net.Tests.TagsCollectionFixtures
     [TestFixture]
     public class Given_DefultConstructor
     {
-        private TagsCollection TagsCollection;
+        private TagsCollection tagsCollection;
 
         [SetUp]
         public void Setup()
         {
-            TagsCollection = new TagsCollection();
+            tagsCollection = new TagsCollection();
         }
 
         [Test]
         public void Then_DefaultHostNameShouldBeSet()
         {
-            Assert.That(TagsCollection.GetHost(), Is.EqualTo(DefaultValues.UNKWNOWN));
+            Assert.That(tagsCollection.GetHost(), Is.EqualTo(TagsCollection.UNKWNOWN));
         }
 
         [Test]
         public void When_HostSet_Then_NewValue()
         {
-            TagsCollection.SetHost("TestHost");
+            tagsCollection.SetHost("TestHost");
 
-            Assert.That(TagsCollection.GetHost(), Is.EqualTo("TestHost"));
+            Assert.That(tagsCollection.GetHost(), Is.EqualTo("TestHost"));
         }
 
         [TestCase("", "")]
@@ -35,7 +35,7 @@ namespace openTSDB.net.Tests.TagsCollectionFixtures
         [TestCase("", null)]
         public void When_SetTagWithInvalidValueAndName_Then_ExceptionThrown(string tagName, string tagValue)
         {
-            Assert.Throws<ArgumentException>(() => TagsCollection.SetTag(tagName, tagValue));
+            Assert.Throws<ArgumentException>(() => tagsCollection.SetTag(tagName, tagValue));
         }
     }
 }

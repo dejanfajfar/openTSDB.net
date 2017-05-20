@@ -7,7 +7,7 @@ namespace openTSDB.net.Tests.TagsCollectionFixtures
     [TestFixture]
     public class Given_HostName
     {
-        private TagsCollection TagsCollection;
+        private TagsCollection tagsCollection;
         private readonly string HostName = "TestHostName";
         private readonly string TagName = "TestTagName";
         private readonly string TagValue = "42";
@@ -15,41 +15,55 @@ namespace openTSDB.net.Tests.TagsCollectionFixtures
         [SetUp]
         public void Setup()
         {
-            TagsCollection = new TagsCollection(HostName);
+            tagsCollection = new TagsCollection(HostName);
         }
 
         [Test]
         public void Then_HostNameSet()
         {
-            Assert.That(TagsCollection[DefaultValues.Tags.HOST], Is.EqualTo(HostName));
+            Assert.That(tagsCollection[TagsCollection.HOST], Is.EqualTo(HostName));
         }
 
         [Test]
         public void When_ProvidingNewHostName_Then_NewHostNameTaken()
         {
-            TagsCollection.SetHost("NewName");
+            tagsCollection.SetHost("NewName");
 
-            Assert.That(TagsCollection[DefaultValues.Tags.HOST], Is.EqualTo("NewName"));
+            Assert.That(tagsCollection[TagsCollection.HOST], Is.EqualTo("NewName"));
         }
 
         [Test]
         public void When_AddNewTag_Then_NewTagAdded()
         {
-            TagsCollection.Add(TagName, TagValue);
+            tagsCollection.Add(TagName, TagValue);
 
-            Assert.That(TagsCollection.ContainsKey(TagName), Is.True);
-            Assert.That(TagsCollection[TagName], Is.EqualTo(TagValue));
+            Assert.That(tagsCollection.ContainsKey(TagName), Is.True);
+            Assert.That(tagsCollection[TagName], Is.EqualTo(TagValue));
         }
 
         [Test]
         public void When_TagValueOverriden_Then_ArgumentExceptionThrown()
         {
-            TagsCollection.Add(TagName, TagValue);
+            tagsCollection.Add(TagName, TagValue);
 
-            Assert.That(TagsCollection.ContainsKey(TagName), Is.True);
+            Assert.That(tagsCollection.ContainsKey(TagName), Is.True);
 
 
-            Assert.Throws<ArgumentException>(() => { TagsCollection.Add(TagName, "43"); });
+            Assert.Throws<ArgumentException>(() => { tagsCollection.Add(TagName, "43"); });
+        }
+
+        [Test]
+        public void When_ExtendedWithANonColidingCollection_Then_BouthTagCollectionJoined()
+        {
+            var extendedCollection = tagsCollection.ExtendWith(new TagsCollection
+            {
+                {"01", "01"},
+                {"02", "02"}
+            });
+
+            Assert.That(extendedCollection.ContainsKey(TagsCollection.HOST), Is.True);
+            Assert.That(extendedCollection.ContainsKey("01"), Is.True);
+            Assert.That(extendedCollection.ContainsKey("02"), Is.True);
         }
     }
 }
