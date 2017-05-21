@@ -58,6 +58,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagsCollectionFixtures\Given_DefultConstructor.cs" />
     <Compile Include="TagsCollectionFixtures\Given_HostName.cs" />
+    <Compile Include="TsdbOptionsFixtures\Given_URI_String_Constructor.cs" />
+    <Compile Include="TsdbOptionsFixtures\Given_URI_TagCollection_Constructor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -75,6 +77,9 @@
     <Content Include="DataPointFixtures\DataPointSample.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OpenTsdbFactoryFixtures" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

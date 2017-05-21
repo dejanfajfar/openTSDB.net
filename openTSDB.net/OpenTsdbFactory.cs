@@ -6,16 +6,17 @@ namespace openTSDB.net
     {
         private static IOpenTsdbManager instance;
 
-        public static IOpenTsdbManager TsdbManager(TsdbOptions options) => new OpenTsdbManager(options);
-
-        public static IOpenTsdbManager TsdbManagerSingelton(TsdbOptions options)
-        {
-            return instance ?? (instance = TsdbManager(options));
-        }
-
         public static IOpenTsdbManager CreateNew(TsdbOptions options) => new OpenTsdbManager(options);
 
-        public static IOpenTsdbManager GetExisting(TsdbOptions options)  => new OpenTsdbManager(options);
+        public static IOpenTsdbManager GetExisting(TsdbOptions options)
+        {
+            if (instance == null)
+            {
+                instance = new OpenTsdbManager(options);
+            }
+
+            return instance;
+        }
 
         public static IOpenTsdbManager CreateNamed(string name, TsdbOptions options) => new OpenTsdbManager(options);
 

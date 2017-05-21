@@ -29,6 +29,18 @@ namespace openTSDB.net.Tests.TagsCollectionFixtures
             Assert.That(tagsCollection.GetHost(), Is.EqualTo("TestHost"));
         }
 
+        [Test]
+        public void When_ComparedToSelf_ThenEqual()
+        {
+            Assert.That(tagsCollection.Equals(tagsCollection), Is.True);
+        }
+
+        [Test]
+        public void When_ComparedToSame_ThenEqual()
+        {
+            Assert.That(tagsCollection.Equals(new TagsCollection()), Is.True);
+        }
+
         [TestCase("", "")]
         [TestCase(null, null)]
         [TestCase(null, "")]
