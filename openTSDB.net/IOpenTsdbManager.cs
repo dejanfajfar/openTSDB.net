@@ -15,7 +15,7 @@ namespace openTSDB.net
         /// <param name="dataPoint">The data point to be submitted to the openTSDB</param>
         /// <typeparam name="T">The underlying data point type</typeparam>
         /// <returns>A openTSDB data submission response</returns>
-        Task<TsdbSubmissionResponse> Push<T>(DataPoint<T> dataPoint);
+        Task<TsdbSubmissionResponse> PushAsync<T>(DataPoint<T> dataPoint);
 
         /// <summary>
         /// Submitst multiple data points at the same time
@@ -23,7 +23,7 @@ namespace openTSDB.net
         /// <param name="dataPoints">The array of list of data points to be submitted</param>
         /// <typeparam name="T">The underlying type of the data point</typeparam>
         /// <returns>A openTSDB data submission response</returns>
-        Task<TsdbSubmissionResponse> Push<T>(IList<DataPoint<T>> dataPoints);
+        Task<TsdbSubmissionResponse> PushAsync<T>(IList<DataPoint<T>> dataPoints);
 
         /// <summary>
         /// Shorthand function to quickly submit a single data point
@@ -32,6 +32,6 @@ namespace openTSDB.net
         /// <param name="value">The value of the data point</param>
         /// <typeparam name="T">The underlying data point value</typeparam>
         /// <returns>A openTSDB data submission response</returns>
-        Task<TsdbSubmissionResponse> Push<T>(string name, T value);
+        Task<TsdbSubmissionResponse> PushAsync<T>(string name, T value);
     }
 }

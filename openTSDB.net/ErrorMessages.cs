@@ -13,5 +13,8 @@
         public const string NAMED_MANAGER_INSTANCE_ALREADY_REGISTERED = "A instance with the same name already exists";
         public const string NAMED_MANAGER_INSTANCE_NAME_INVALID = "The provided manager instance name is invalid";
         public const string MANAGER_OPTIONS_NULL = "The provided TsdbOptions can not be null";
+        public const string NETWORK_BRIDGE_NULL = "The provided network bridge can not be null";
+        public const string DATA_POINT_NULL = "Trying to submit a null data point which is not possible";
+        public const string DATA_POINT_NAME_INVALID = "The provided data point name cannot be null or empty";
     }
 }

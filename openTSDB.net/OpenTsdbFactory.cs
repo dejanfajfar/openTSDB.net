@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using openTSDB.net.Models;
+using openTSDB.net.Network;
 
 namespace openTSDB.net
 {
@@ -24,7 +25,7 @@ namespace openTSDB.net
         /// </summary>
         /// <param name="options">The options to create the openTsdbManager with</param>
         /// <returns>A new instance of </returns>
-        public static IOpenTsdbManager CreateNew(TsdbOptions options) => new OpenTsdbManager(options);
+        public static IOpenTsdbManager CreateNew(TsdbOptions options) => new OpenTsdbManager(options, new OpenTsdbIntegration(options.OpenTsdbServerUri));
 
         /// <summary>
         /// Retrieves a singelton instance of the <see cref="IOpenTsdbManager"/>
@@ -33,7 +34,7 @@ namespace openTSDB.net
         /// <returns>A shared singelton instance of the <see cref="IOpenTsdbManager"/></returns>
         public static IOpenTsdbManager GetSingleton(TsdbOptions options)
         {
-            return instance ?? (instance = new OpenTsdbManager(options));
+            return instance ?? (instance = new OpenTsdbManager(options, new OpenTsdbIntegration(options.OpenTsdbServerUri)));
         }
 
         /// <summary>

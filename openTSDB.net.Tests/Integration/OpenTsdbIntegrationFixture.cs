@@ -15,7 +15,7 @@ namespace openTSDB.net.Tests.Integration
         {
             var pushResult = OpenTsdbFactory
                 .CreateNew(new TsdbOptions(new Uri(_openTsdbUrl), "DFMac01"))
-                .Push("ping", new Random().Next());
+                .PushAsync("ping", new Random().Next());
 
             Assert.That(pushResult.Result.ResponseHttpStatusCode, Is.EqualTo(204));
         }
