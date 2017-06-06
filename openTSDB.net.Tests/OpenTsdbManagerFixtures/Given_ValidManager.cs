@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using openTSDB.net.Models;
@@ -28,6 +29,24 @@ namespace openTSDB.net.Tests.OpenTsdbManagerFixtures
             {
                 await manager.PushAsync(nameInput, 42);
             }, Throws.ArgumentException);
+        }
+
+        [Test]
+        public void PushAsyncDataPoint_NullDataPoint_ArgumentNullException()
+        {
+            Assert.That(async () =>
+            {
+                await manager.PushAsync((DataPoint<int>)null);
+            }, Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void PushAsyncDataPoints_NullDataPoints_ArgumentNullException()
+        {
+            Assert.That(async () =>
+            {
+                await manager.PushAsync((IList<DataPoint<int>>)null);
+            }, Throws.ArgumentNullException);
         }
     }
 }
