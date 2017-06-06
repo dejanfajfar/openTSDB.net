@@ -7,24 +7,24 @@ using openTSDB.net.Models;
 
 namespace openTSDB.net
 {
-    public static class SingleDataPointExtentions
+    public static class DataPointExtentions
     {
-        public static string Stringify<T>(this SingleDataPoint<T> singleDataPoint)
+        public static string Stringify<T>(this DataPoint<T> dataPoint)
         {
-            return Serialize(singleDataPoint);
+            return Serialize(dataPoint);
         }
 
-        public static string Stringify<T>(this IEnumerable<SingleDataPoint<T>> singleDataPoints)
+        public static string Stringify<T>(this IEnumerable<DataPoint<T>> singleDataPoints)
         {
             return Serialize(singleDataPoints);
         }
 
-        public static byte[] Bytify<T>(this SingleDataPoint<T> singleDataPoint)
+        public static byte[] Bytify<T>(this DataPoint<T> dataPoint)
         {
-            return Encoding.UTF8.GetBytes(Serialize(singleDataPoint));
+            return Encoding.UTF8.GetBytes(Serialize(dataPoint));
         }
 
-        public static byte[] Bytify<T>(this IEnumerable<SingleDataPoint<T>> singleDataPoints)
+        public static byte[] Bytify<T>(this IEnumerable<DataPoint<T>> singleDataPoints)
         {
             return Encoding.UTF8.GetBytes(Serialize(singleDataPoints));
         }

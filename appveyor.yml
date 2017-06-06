@@ -1,7 +1,6 @@
-version: 0.1.{build}-{branch}
+version: 1.0.{build}-{branch}
 image:
 - Visual Studio 2017
-- Visual Studio 2015
 configuration: Release
 assembly_info:
   patch: true
@@ -12,10 +11,15 @@ assembly_info:
 before_build:
 - cmd: nuget restore
 build:
+  project: openTSDB.net.sln
   publish_nuget: true
   publish_nuget_symbols: true
   include_nuget_references: true
   verbosity: detailed
+test:
+  categories:
+    except:
+    - Integration
 deploy:
 - provider: NuGet
   api_key:

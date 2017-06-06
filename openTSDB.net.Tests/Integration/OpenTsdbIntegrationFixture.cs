@@ -13,14 +13,9 @@ namespace openTSDB.net.Tests.Integration
         [Ignore("Only for integration purposes. !! Must refactor !!")]
         public void SubmitSinglePointData()
         {
-            var pushResult = OpenTsdbFactory.TsdbManager(new TsdbOptions
-            {
-                OpenTsdbServerUri = new Uri(_openTsdbUrl),
-                DefaultTags = new TagsCollection
-                {
-                    {"host", "DFMac01"}
-                }
-            }).Push("ping", new Random().Next());
+            var pushResult = OpenTsdbFactory
+                .CreateNew(new TsdbOptions(new Uri(_openTsdbUrl), "DFMac01"))
+                .PushAsync("ping", new Random().Next());
 
             Assert.That(pushResult.Result.ResponseHttpStatusCode, Is.EqualTo(204));
         }
