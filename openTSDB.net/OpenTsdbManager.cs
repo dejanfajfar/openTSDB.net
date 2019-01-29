@@ -47,7 +47,7 @@ namespace openTSDB.net
             {
                 Metric = name,
                 Value = value,
-                Timestamp = DateTime.Now.ToEpoch(),
+                Timestamp = DateTime.Now.ToRawEpoch(),
                 Tags = Options.DefaultTags
             });
         }
