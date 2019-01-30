@@ -10,7 +10,7 @@ namespace openTSDB.net.Network
     /// <summary>
     /// Network integration layer
     /// </summary>
-    internal class OpenTsdbIntegration : IOpenTsdbNetworkBridge
+    public class OpenTsdbIntegration : IOpenTsdbNetworkBridge
     {
         /// <summary>
         /// The relative path to the put endpoint

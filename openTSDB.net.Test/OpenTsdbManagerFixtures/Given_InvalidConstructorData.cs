@@ -1,23 +1,30 @@
 using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using openTSDB.net;
 using openTSDB.net.Models;
 using openTSDB.net.Network;
 
-namespace openTSDB.net.Tests.OpenTsdbManagerFixtures
+namespace OpenTsdb.Net.Test.OpenTsdbManagerFixtures
 {
-    [TestFixture]
+    [TestClass]
     public class Given_InvalidConstructorData
     {
-        [Test]
+        [TestMethod]
         public void When_NullOptions_Then_ArgumentNullException()
         {
-            Assert.That(() => { new OpenTsdbManager(null, new OpenTsdbIntegration(new Uri("http://localhost"))); }, Throws.ArgumentNullException);
+            Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                new OpenTsdbManager(null, new OpenTsdbIntegration(new Uri("http://localhost")));
+            });
         }
         
-        [Test]
+        [TestMethod]
         public void When_NullNetworkBridge_Then_ArgumentNullException()
         {
-            Assert.That(() => { new OpenTsdbManager(new TsdbOptions(new Uri("http://localhost"), "test"), null); }, Throws.ArgumentNullException);
+            Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                new OpenTsdbManager(new TsdbOptions(new Uri("http://localhost"), "test"), null);
+            });
         }
     }
 }

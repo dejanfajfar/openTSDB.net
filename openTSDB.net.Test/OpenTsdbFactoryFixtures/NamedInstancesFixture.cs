@@ -1,107 +1,113 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using openTSDB.net;
 using openTSDB.net.Models;
 
-namespace openTSDB.net.Tests.OpenTsdbFactoryFixtures
+namespace OpenTsdb.Net.Test.OpenTsdbFactoryFixtures
 {
-    [TestFixture]
+    [TestClass]
     public class NamedInstancesFixture
     {
-        [SetUp]
+        [TestInitialize]
         public void Setup()
         {
             OpenTsdbFactory.ClearNamed();
         }
         
-        [TestCase("")]
-        [TestCase(null)]
-        [TestCase(" ")]
+        [TestMethod]
+        [DataRow("")]
+        [DataRow(null)]
+        [DataRow(" ")]
         public void CreateNamedInstance_InvalidName_ArgumentException(string nameInput)
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentException>(() =>
             {
                 OpenTsdbFactory.CreateNamed(nameInput, new TsdbOptions(new Uri("http://localhost"), "Test"));
             });
         }
 
-        [Test]
+        [TestMethod]
         public void CreateNamedInstance_InvalidOptions_ArgumentException()
         {
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.ThrowsException<ArgumentNullException>(() =>
             {
                 OpenTsdbFactory.CreateNamed("test", null);
             });
         }
 
-        [Test]
+        [TestMethod]
         public void CreateNamedInstance_DuplicateName_ArgumentException()
         {
             OpenTsdbFactory.CreateNamed("test", new TsdbOptions(new Uri("http://localhost"), "Test"));
             
-            Assert.Throws<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentException>(() =>
             {
                 OpenTsdbFactory.CreateNamed("test", new TsdbOptions(new Uri("http://localhost"), "Test"));
             });
         }
         
-        [Test]
+        [TestMethod]
         public void CreateNamedInstance_ValidOptions_InstanceCreated()
         {
-            OpenTsdbFactory.CreateNamed("test", new TsdbOptions(new Uri("http://localhost"), "Test"));
+            var manager = OpenTsdbFactory.CreateNamed("test", new TsdbOptions(new Uri("http://localhost"), "Test"));
+            
+            Assert.IsNotNull(manager);
         }
 
-        [TestCase("")]
-        [TestCase(null)]
-        [TestCase(" ")]
+        [TestMethod]
+        [DataRow("")]
+        [DataRow(null)]
+        [DataRow(" ")]
         public void GetNamed_InvalidName_ArgumentExceptionThrown(string nameInput)
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentException>(() =>
             {
                 OpenTsdbFactory.GetNamed(nameInput);
             });
         }
 
-        [Test]
+        [TestMethod]
         public void GetNamed_NonExistingKey_KeyNotFoundException()
         {
-            Assert.Throws<KeyNotFoundException>(() =>
+            Assert.ThrowsException<KeyNotFoundException>(() =>
             {
                 OpenTsdbFactory.GetNamed("I am not there");
             });
         }
 
-        [Test]
+        [TestMethod]
         public void GetNamed_ValidName_InstanceReturned()
         {
             var testIntance = OpenTsdbFactory.CreateNamed("test", new TsdbOptions(new Uri("http://localhost"), "Test"));
 
             var compareInstance = OpenTsdbFactory.GetNamed("test");
             
-            Assert.That(testIntance, Is.EqualTo(compareInstance));
+            Assert.AreEqual(testIntance, compareInstance);
         }
-
-        [TestCase("")]
-        [TestCase(null)]
-        [TestCase(" ")]
+        
+        [TestMethod]
+        [DataRow("")]
+        [DataRow(null)]
+        [DataRow(" ")]
         public void IsNamedDefined_InvalidName_False(string nameInput)
         {
-            Assert.That(OpenTsdbFactory.IsNamedDefined(nameInput), Is.False);
+            Assert.IsFalse(OpenTsdbFactory.IsNamedDefined(nameInput));
         }
 
-        [Test]
+        [TestMethod]
         public void IsNamedDefined_ExistingName_True()
         {
             OpenTsdbFactory.CreateNamed("test", new TsdbOptions(new Uri("http://localhost"), "Test"));
-            
-            Assert.That(OpenTsdbFactory.IsNamedDefined("test"), Is.True);
+
+            Assert.IsTrue(OpenTsdbFactory.IsNamedDefined("test"));
         }
 
-        [Test]
+        [TestMethod]
         public void IsNamedDefined_NonExistingName_False()
         {
             
-            Assert.That(OpenTsdbFactory.IsNamedDefined("test"), Is.False);
+            Assert.IsFalse(OpenTsdbFactory.IsNamedDefined("test"));
         }
     }
 }

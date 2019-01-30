@@ -9,4 +9,8 @@
       <Compile Remove="Class1.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Epoch.net" Version="1.1.24" />
+    </ItemGroup>
+
 </Project>
