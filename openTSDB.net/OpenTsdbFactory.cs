@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using openTSDB.net.Models;
-using openTSDB.net.Network;
+using OpenTsdbNet;
+using OpenTsdbNet.models;
+using OpenTsdbNet.Network;
 
 namespace openTSDB.net
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace openTSDB.net.Models
+namespace OpenTsdbNet.models
 {
     /// <summary>
     /// Represents the initial OpenTsdbManager parameters
@@ -13,7 +13,7 @@ namespace openTSDB.net.Models
         /// <param name="openTsdbServer">The URI to the openTSDB server</param>
         /// <param name="hostName">The name of the event data origin host</param>
         public TsdbOptions(Uri openTsdbServer, string hostName)
-        : this(openTsdbServer, new TagsCollection(hostName))
+        : this(openTsdbServer, TagsCollection.New())
         {}
 
         /// <summary>

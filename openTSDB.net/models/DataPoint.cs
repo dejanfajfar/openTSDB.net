@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace openTSDB.net.Models
+namespace OpenTsdbNet.models
 {
     /// <summary>
     /// Defines a single data point that can be submitted to the openTSDB server

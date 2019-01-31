@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Epoch.net;
-using openTSDB.net.Models;
-using openTSDB.net.Network;
+using openTSDB.net;
+using OpenTsdbNet.models;
+using OpenTsdbNet.Network;
+using ErrorMessages = OpenTsdbNet.ErrorMessages;
 
-namespace openTSDB.net
+namespace OpenTsdbNet
 {
     public class OpenTsdbManager : IOpenTsdbManager
     {

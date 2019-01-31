@@ -3,9 +3,9 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using openTSDB.net.Models;
+using OpenTsdbNet.models;
 
-namespace openTSDB.net
+namespace OpenTsdbNet
 {
     public static class DataPointExtentions
     {

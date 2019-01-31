@@ -5,7 +5,8 @@ using System.Text;
 using Epoch.net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using openTSDB.net;
-using openTSDB.net.Models;
+using OpenTsdbNet;
+using OpenTsdbNet.models;
 
 namespace OpenTsdb.Net.Test.DataPointFixtures
 {

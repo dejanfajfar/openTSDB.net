@@ -1,8 +1,9 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using openTSDB.net;
-using openTSDB.net.Models;
-using openTSDB.net.Network;
+using OpenTsdbNet;
+using OpenTsdbNet.models;
+using OpenTsdbNet.Network;
 
 namespace OpenTsdb.Net.Test.OpenTsdbManagerFixtures
 {

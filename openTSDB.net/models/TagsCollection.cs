@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace openTSDB.net.Models
+namespace OpenTsdbNet.models
 {
     /// <summary>
     /// Defines a key/value metadata colection used for openTSDB data submission
@@ -19,24 +19,17 @@ namespace openTSDB.net.Models
         /// </summary>
         public const string UNKWNOWN = "unknown";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TagsCollection"/>
-        /// with the host set to UNKNOWN
-        /// </summary>
-        /// <remarks>
-        /// A Tag collection must contain at least one key value pair and that is the HOST name
-        /// This constructor sets the host name to UNKNOWN
-        /// </remarks>
-        public TagsCollection() : this(UNKWNOWN) {}
+        public static TagsCollection New()
+        {
+            return new TagsCollection();
+        }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TagsCollection"/>
-        /// with the provided host name
-        /// </summary>
-        /// <param name="hostName">The host name to set for this tags collection</param>
-        /// <exception cref="ArgumentException">
-        /// If the host name is null or containing only whitespaces
-        /// </exception>
+        /// <inheritdoc />
+        public TagsCollection()
+        {
+            Add(HOST, Environment.MachineName);
+        }
+
         public TagsCollection(string hostName)
         {
             if (string.IsNullOrWhiteSpace(hostName))

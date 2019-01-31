@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using openTSDB.net.Models;
-using openTSDB.net.Network;
+using OpenTsdbNet;
+using OpenTsdbNet.models;
+using OpenTsdbNet.Network;
 
 namespace openTSDB.net.Tests.OpenTsdbManagerFixtures
 {

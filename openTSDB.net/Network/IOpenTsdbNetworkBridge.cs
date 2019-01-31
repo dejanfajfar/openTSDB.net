@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using openTSDB.net.Exceptions;
-using openTSDB.net.Models;
+using OpenTsdbNet.Exceptions;
+using OpenTsdbNet.models;
 
-namespace openTSDB.net.Network
+namespace OpenTsdbNet.Network
 {
     /// <summary>
     /// Defines the openTSDB network bridge interface

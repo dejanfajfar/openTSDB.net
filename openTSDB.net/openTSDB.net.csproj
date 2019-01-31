@@ -2,12 +2,9 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>OpenTsdb.Net</RootNamespace>
+        <RootNamespace>OpenTsdbNet</RootNamespace>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Compile Remove="Class1.cs" />
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Epoch.net" Version="1.1.24" />

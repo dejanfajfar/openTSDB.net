@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using openTSDB.net;
-using openTSDB.net.Models;
+using OpenTsdbNet.models;
 
 namespace OpenTsdb.Net.Test.OpenTsdbFactoryFixtures
 {

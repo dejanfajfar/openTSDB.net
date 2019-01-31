@@ -2,10 +2,10 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using openTSDB.net.Exceptions;
-using openTSDB.net.Models;
+using OpenTsdbNet.Exceptions;
+using OpenTsdbNet.models;
 
-namespace openTSDB.net.Network
+namespace OpenTsdbNet.Network
 {
     /// <summary>
     /// Network integration layer

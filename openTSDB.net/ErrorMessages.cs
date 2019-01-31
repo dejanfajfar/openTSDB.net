@@ -1,5 +1,5 @@
 ﻿
-namespace openTSDB.net
+namespace OpenTsdbNet
 {
     /// <summary>
     /// Defines common validation messages

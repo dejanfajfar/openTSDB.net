@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace openTSDB.net.Exceptions
+namespace OpenTsdbNet.Exceptions
 {
     /// <summary>
     /// Thrown when a data point submission to the openTSDB server fails
