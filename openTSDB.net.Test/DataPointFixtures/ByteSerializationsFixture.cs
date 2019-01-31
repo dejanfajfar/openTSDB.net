@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Epoch.net;
@@ -15,7 +16,7 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
         [DeploymentItem("DataPointFixtures/DataPointSample.json")]
         public void SerializeDataPoint()
         {
-            var sampleDataPoint = File.ReadAllText("DataPointFixtures/DataPointSample.json");
+            var sampleDataPoint = File.ReadAllText("DataPointFixtures/DataPointSample.json", Encoding.UTF8);
 
             var dataPoint = new DataPoint<int>
             {
@@ -25,7 +26,7 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
                 Tags = new TagsCollection("testHost")
             };
 
-            Assert.AreEqual(dataPoint.Bytify(), Encoding.UTF8.GetBytes(sampleDataPoint));
+            CollectionAssert.AreEqual(dataPoint.Bytify(), Encoding.UTF8.GetBytes(sampleDataPoint));
         }
 
         [TestMethod]
@@ -52,7 +53,7 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
                 }
             };
 
-            Assert.AreEqual(dataPoints.Bytify(), Encoding.UTF8.GetBytes(sampleDataPoints));
+            CollectionAssert.AreEqual(dataPoints.Bytify(), Encoding.UTF8.GetBytes(sampleDataPoints));
         }
     }
 }

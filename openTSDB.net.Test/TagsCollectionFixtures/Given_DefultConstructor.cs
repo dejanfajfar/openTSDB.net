@@ -1,53 +1,55 @@
 ﻿using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using openTSDB.net;
 using openTSDB.net.Models;
 
-namespace openTSDB.net.Tests.TagsCollectionFixtures
+namespace OpenTsdb.Net.Test.TagsCollectionFixtures
 {
-    [TestFixture]
-    public class Given_DefultConstructor
+    [TestClass]
+    public class GivenDefaultConstructor
     {
         private TagsCollection tagsCollection;
 
-        [SetUp]
+        [TestInitialize]
         public void Setup()
         {
             tagsCollection = new TagsCollection();
         }
 
-        [Test]
+        [TestMethod]
         public void Then_DefaultHostNameShouldBeSet()
         {
-            Assert.That(tagsCollection.GetHost(), Is.EqualTo(TagsCollection.UNKWNOWN));
+            Assert.AreEqual(tagsCollection.GetHost(), TagsCollection.UNKWNOWN);
         }
 
-        [Test]
+        [TestMethod]
         public void When_HostSet_Then_NewValue()
         {
             tagsCollection.SetHost("TestHost");
 
-            Assert.That(tagsCollection.GetHost(), Is.EqualTo("TestHost"));
+            Assert.AreEqual(tagsCollection.GetHost(), "TestHost");
         }
 
-        [Test]
+        [TestMethod]
         public void When_ComparedToSelf_ThenEqual()
         {
-            Assert.That(tagsCollection.Equals(tagsCollection), Is.True);
+            Assert.IsTrue(tagsCollection.Equals(tagsCollection));
         }
 
-        [Test]
+        [TestMethod]
         public void When_ComparedToSame_ThenEqual()
         {
-            Assert.That(tagsCollection.Equals(new TagsCollection()), Is.True);
+            Assert.IsTrue(tagsCollection.Equals(new TagsCollection()));
         }
 
-        [TestCase("", "")]
-        [TestCase(null, null)]
-        [TestCase(null, "")]
-        [TestCase("", null)]
+        [TestMethod]
+        [DataRow("", "")]
+        [DataRow(null, null)]
+        [DataRow(null, "")]
+        [DataRow("", null)]
         public void When_SetTagWithInvalidValueAndName_Then_ExceptionThrown(string tagName, string tagValue)
         {
-            Assert.Throws<ArgumentException>(() => tagsCollection.SetTag(tagName, tagValue));
+            Assert.ThrowsException<ArgumentException>(() => tagsCollection.SetTag(tagName, tagValue));
         }
     }
 }

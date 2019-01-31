@@ -22,4 +22,15 @@
       <ProjectReference Include="..\openTSDB.net\openTSDB.net.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="DataPointFixtures\DataPointListSample.json" />
+      <Content Include="DataPointFixtures\DataPointListSample.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="DataPointFixtures\DataPointSample.json" />
+      <Content Include="DataPointFixtures\DataPointSample.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

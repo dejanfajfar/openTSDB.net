@@ -1,67 +1,68 @@
 ﻿using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using openTSDB.net;
 using openTSDB.net.Models;
 
-namespace openTSDB.net.Tests.TsdbOptionsFixtures
+namespace OpenTsdb.Net.Test.TsdbOptionsFixtures
 {
-    [TestFixture]
+    [TestClass]
     public class Given_URI_String_Constructor
     {
-        [Test]
+        [TestMethod]
         public void When_UsingURI_ThenValidOptionsReturned()
         {
             var options = new TsdbOptions(new Uri("http://localhost:4242"), "localhost");
 
-            Assert.That(options.OpenTsdbServerUri, Is.EqualTo(new Uri("http://localhost:4242")));
-            Assert.That(options.DefaultTags.GetHost(), Is.EqualTo("localhost"));
+            Assert.AreEqual(options.OpenTsdbServerUri, new Uri("http://localhost:4242"));
+            Assert.AreEqual(options.DefaultTags.GetHost(), "localhost");
         }
 
-        [Test]
-        public void When_InvaliURI_ThenErrorThrown()
+        [TestMethod]
+        public void When_InvalidURI_ThenErrorThrown()
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentException>(() =>
             {
                 new TsdbOptions(null, "localhost");
             },
                 ErrorMessages.SERVER_URI_INVALID);
         }
 
-        [Test]
+        [TestMethod]
         public void When_NullHostName_ThenErrorThrown()
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentException>(() =>
                 {
                     new TsdbOptions(new Uri("http://localhost"), (string) null);
                 },
                 ErrorMessages.HOST_NAME_INVALID_ERROR_MESSAGE);
         }
 
-        [Test]
+        [TestMethod]
         public void When_EmptyHostName_ThenErrorThrown()
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentException>(() =>
                 {
                     new TsdbOptions(new Uri("http://localhost"), string.Empty);
                 },
                 ErrorMessages.HOST_NAME_INVALID_ERROR_MESSAGE);
         }
 
-        [Test]
+        [TestMethod]
         public void When_ComparedToSameObject_ThenHashCodeEual()
         {
             var options = new TsdbOptions(new Uri("http://localhost:4242"), "localhost");
             var options2 = new TsdbOptions(new Uri("http://localhost:4242"), "localhost");
 
-            Assert.That(options.GetHashCode(), Is.EqualTo(options2.GetHashCode()));
+            Assert.AreEqual(options.GetHashCode(), options2.GetHashCode());
         }
 
-        [Test]
+        [TestMethod]
         public void When_ComparedToSameObject_ThenEqual()
         {
             var options = new TsdbOptions(new Uri("http://localhost:4242"), "localhost");
             var options2 = new TsdbOptions(new Uri("http://localhost:4242"), "localhost");
 
-            Assert.That(options.Equals(options2), Is.True);
+            Assert.IsTrue(options.Equals(options2));
         }
     }
 }

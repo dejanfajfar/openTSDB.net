@@ -1,44 +1,45 @@
 ﻿using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using openTSDB.net;
 using openTSDB.net.Models;
 
-namespace openTSDB.net.Tests.TsdbOptionsFixtures
+namespace OpenTsdb.Net.Test.TsdbOptionsFixtures
 {
-    [TestFixture]
+    [TestClass]
     public class Given_URI_TagCollection_Constructor
     {
-        [Test]
+        [TestMethod]
         public void When_DefaultTagCollection_Then_Host_Unknown()
         {
             var options = new TsdbOptions(new Uri("http://localhost:4242"), new TagsCollection());
 
-            Assert.That(options.OpenTsdbServerUri, Is.EqualTo(new Uri("http://localhost:4242")));
-            Assert.That(options.DefaultTags.GetHost(), Is.EqualTo(TagsCollection.UNKWNOWN));
+            Assert.AreEqual(options.OpenTsdbServerUri, new Uri("http://localhost:4242"));
+            Assert.AreEqual(options.DefaultTags.GetHost(), TagsCollection.UNKWNOWN);
         }
 
-        [Test]
+        [TestMethod]
         public void When_UriAndHost_ThenAllInitialized()
         {
             var options = new TsdbOptions(new Uri("http://localhost:4242"), new TagsCollection("localhost"));
 
-            Assert.That(options.OpenTsdbServerUri, Is.EqualTo(new Uri("http://localhost:4242")));
-            Assert.That(options.DefaultTags.GetHost(), Is.EqualTo("localhost"));
+            Assert.AreEqual(options.OpenTsdbServerUri, new Uri("http://localhost:4242"));
+            Assert.AreEqual(options.DefaultTags.GetHost(), "localhost");
         }
 
-        [Test]
+        [TestMethod]
         public void When_InvaliURINull_ThenErrorThrown()
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentException>(() =>
                 {
                     new TsdbOptions(null, "localhost");
                 },
                 ErrorMessages.SERVER_URI_INVALID);
         }
 
-        [Test]
+        [TestMethod]
         public void When_TagCollectionNull_ThenErrorThrown()
         {
-            Assert.Throws<ArgumentException>(() =>
+            Assert.ThrowsException<ArgumentException>(() =>
                 {
                     new TsdbOptions(new Uri("http://localhost:4242"), (TagsCollection) null);
                 },
