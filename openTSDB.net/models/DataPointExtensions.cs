@@ -3,28 +3,27 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using OpenTsdbNet.models;
 
-namespace OpenTsdbNet
+namespace OpenTsdbNet.models
 {
-    public static class DataPointExtentions
+    public static class DataPointExtensions
     {
-        public static string Stringify<T>(this DataPoint<T> dataPoint)
+        public static string AsString<T>(this DataPoint<T> dataPoint)
         {
             return Serialize(dataPoint);
         }
 
-        public static string Stringify<T>(this IEnumerable<DataPoint<T>> singleDataPoints)
+        public static string AsString<T>(this IEnumerable<DataPoint<T>> singleDataPoints)
         {
             return Serialize(singleDataPoints);
         }
 
-        public static byte[] Bytify<T>(this DataPoint<T> dataPoint)
+        public static byte[] AsByteArray<T>(this DataPoint<T> dataPoint)
         {
             return Encoding.UTF8.GetBytes(Serialize(dataPoint));
         }
 
-        public static byte[] Bytify<T>(this IEnumerable<DataPoint<T>> singleDataPoints)
+        public static byte[] AsByteArray<T>(this IEnumerable<DataPoint<T>> singleDataPoints)
         {
             return Encoding.UTF8.GetBytes(Serialize(singleDataPoints));
         }
@@ -39,11 +38,11 @@ namespace OpenTsdbNet
 
             var searializer = new DataContractJsonSerializer(value.GetType(), settings);
 
-            using (var memorySteram = new MemoryStream())
+            using (var memoryStream = new MemoryStream())
             {
-                searializer.WriteObject(memorySteram, value);
-                memorySteram.Position = 0;
-                var streamreader = new StreamReader(memorySteram);
+                searializer.WriteObject(memoryStream, value);
+                memoryStream.Position = 0;
+                var streamreader = new StreamReader(memoryStream);
                 return streamreader.ReadToEnd();
             }
         }

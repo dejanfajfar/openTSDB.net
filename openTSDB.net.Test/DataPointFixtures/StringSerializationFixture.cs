@@ -24,7 +24,7 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
                 Tags = TagsCollection.New("testHost")
             };
 
-            Assert.AreEqual(dataPoint.Stringify(), sampleDataPoint);
+            Assert.AreEqual(sampleDataPoint, dataPoint.AsString());
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
                 }
             };
 
-            Assert.AreEqual(dataPoints.Stringify(), sampleDataPoints);
+            Assert.AreEqual(sampleDataPoints, dataPoints.AsString() );
         }
     }
 }

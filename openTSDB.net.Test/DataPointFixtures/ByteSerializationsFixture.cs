@@ -25,7 +25,7 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
                 Tags = TagsCollection.New("testHost")
             };
 
-            CollectionAssert.AreEqual(dataPoint.Bytify(), Encoding.UTF8.GetBytes(sampleDataPoint));
+            CollectionAssert.AreEqual(dataPoint.AsByteArray(), Encoding.UTF8.GetBytes(sampleDataPoint));
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
                 }
             };
 
-            CollectionAssert.AreEqual(dataPoints.Bytify(), Encoding.UTF8.GetBytes(sampleDataPoints));
+            CollectionAssert.AreEqual(dataPoints.AsByteArray(), Encoding.UTF8.GetBytes(sampleDataPoints));
         }
     }
 }
