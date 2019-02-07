@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Epoch.net;
-using openTSDB.net;
 using OpenTsdbNet.models;
 using OpenTsdbNet.Network;
 using ErrorMessages = OpenTsdbNet.ErrorMessages;

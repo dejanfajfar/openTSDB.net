@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using OpenTsdbNet;
 using OpenTsdbNet.models;
 using OpenTsdbNet.Network;
 
-namespace openTSDB.net
+namespace OpenTsdbNet
 {
     /// <summary>
     /// Implements factory facility to create <see cref="OpenTsdbManager"/> instance
@@ -24,78 +23,43 @@ namespace openTSDB.net
         /// <summary>
         /// Creates a new instance of the <see cref="IOpenTsdbManager"/>
         /// </summary>
-        /// <param name="options">The options to create the openTsdbManager with</param>
+        /// <param name="options"></param>
         /// <returns>A new instance of </returns>
-        public static IOpenTsdbManager CreateNew(TsdbOptions options) => new OpenTsdbManager(options, new OpenTsdbIntegration(options.OpenTsdbServerUri));
+        public static IOpenTsdbManager Instance(TsdbOptions options) => new OpenTsdbManager(options, new OpenTsdbIntegration(options.OpenTsdbServerUri));
+
 
         /// <summary>
-        /// Retrieves a singelton instance of the <see cref="IOpenTsdbManager"/>
+        /// Creates or returns an already existing instance of <see cref="IOpenTsdbManager"/>
         /// </summary>
-        /// <param name="options">The startup options</param>
-        /// <returns>A shared singelton instance of the <see cref="IOpenTsdbManager"/></returns>
-        public static IOpenTsdbManager GetSingleton(TsdbOptions options)
-        {
-            return instance ?? (instance = new OpenTsdbManager(options, new OpenTsdbIntegration(options.OpenTsdbServerUri)));
-        }
-
-        /// <summary>
-        /// Creates a new named instance of the <see cref="IOpenTsdbManager"/> implementation
-        /// </summary>
-        /// <param name="name">The unique name of the initialized instance</param>
-        /// <param name="options">The startup options for the named instance</param>
-        /// <returns>The newly created named instance of the <see cref="IOpenTsdbManager"/></returns>
+        /// <param name="options">The options needed to initialize a new instance</param>
+        /// <param name="instanceName">The name of the instance</param>
+        /// <returns>
+        ///    If the name is not known then a new instance will be returned. If the name has already an instance created then that instance will be returned
+        /// </returns>
         /// <exception cref="ArgumentException">
-        /// A <see cref="ArgumentException"/> is shown if
-        /// * The provided name is null or conists only of whitespaces
-        /// * The provided name is already alocated in the named instance repository
-        /// * The provided options are null
+        ///    If the instance name is null or made up completely of whitespaces 
         /// </exception>
-        public static IOpenTsdbManager CreateNamed(string name, TsdbOptions options)
+        /// <exception cref="ArgumentNullException">
+        ///    If the options are needed to create a new instance and are found to be null
+        /// </exception>
+        public static IOpenTsdbManager Instance(TsdbOptions options, string instanceName)
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(instanceName))
             {
-                throw new ArgumentException(ErrorMessages.NAMED_MANAGER_INSTANCE_NAME_INVALID, nameof(name));
+                throw new ArgumentException(ErrorMessages.NAMED_MANAGER_INSTANCE_NAME_INVALID, nameof(instanceName));
             }
 
-            if (options == null)
+            if (!namedInstances.ContainsKey(instanceName))
             {
-                throw new ArgumentNullException(ErrorMessages.MANAGER_OPTIONS_NULL, nameof(options));
-            }
-
-            if (namedInstances.ContainsKey(name))
-            {
-                throw new ArgumentException(ErrorMessages.NAMED_MANAGER_INSTANCE_ALREADY_REGISTERED, nameof(name));
+                if (options == null)
+                {
+                    throw new ArgumentNullException(ErrorMessages.MANAGER_OPTIONS_NULL, nameof(options));
+                }
+                
+                namedInstances[instanceName] = Instance(options);    
             }
             
-            namedInstances[name] = CreateNew(options);
-
-            return GetNamed(name);
-        }
-
-        /// <summary>
-        /// Retrieves a previously created named instance of the <see cref="IOpenTsdbManager"/>
-        /// </summary>
-        /// <param name="name">The name of the requested instance</param>
-        /// <returns>The named <see cref="IOpenTsdbManager"/> instance</returns>
-        /// <exception cref="ArgumentException">
-        /// Thorwn if the provided name is null or consist only of whitespaces
-        /// </exception>
-        /// <exception cref="KeyNotFoundException">
-        /// If the desired named instance has not been initialized yet
-        /// </exception>
-        public static IOpenTsdbManager GetNamed(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException(ErrorMessages.NAMED_MANAGER_INSTANCE_NAME_INVALID, nameof(name));
-            }
-
-            if (!namedInstances.ContainsKey(name))
-            {
-                throw new KeyNotFoundException();
-            }
-
-            return namedInstances[name];
+            return namedInstances[instanceName];
         }
 
         /// <summary>
@@ -109,11 +73,11 @@ namespace openTSDB.net
         /// <summary>
         /// Determines if a named instance is already registered
         /// </summary>
-        /// <param name="name">The name of the queried instance</param>
+        /// <param name="instanceName">The name of the queried instance</param>
         /// <returns>True if the instance is already registered, False if otherwise</returns>
-        public static bool IsNamedDefined(string name)
+        public static bool IsInstanceDefined(string instanceName)
         {
-            return !string.IsNullOrWhiteSpace(name) && namedInstances.ContainsKey(name);
+            return !string.IsNullOrWhiteSpace(instanceName) && namedInstances.ContainsKey(instanceName);
         }
     }
 }

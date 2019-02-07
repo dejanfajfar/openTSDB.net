@@ -1,5 +1,4 @@
 ﻿using System;
-using openTSDB.net;
 using OpenTsdbNet.models;
 
 namespace OpenTsdbNet
