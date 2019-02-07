@@ -14,6 +14,8 @@ namespace OpenTsdbNet.models
         /// </summary>
         public const string HOST = "host";
 
+        public const string HOST_ARTIFICIAL = "host_artificial";
+
         /// <summary>
         /// Defines the UNKNOWN constant
         /// </summary>
@@ -24,19 +26,19 @@ namespace OpenTsdbNet.models
             return new TagsCollection();
         }
 
-        /// <inheritdoc />
-        public TagsCollection()
+        public static TagsCollection New(string machineName)
         {
-            Add(HOST, Environment.MachineName);
+            var instance = new TagsCollection();
+            instance.Add(HOST_ARTIFICIAL, "true");
+            instance.SetHost(machineName);
+
+            return instance;
         }
 
-        public TagsCollection(string hostName)
+        
+        protected TagsCollection()
         {
-            if (string.IsNullOrWhiteSpace(hostName))
-            {
-                throw new ArgumentException(ErrorMessages.HOST_NAME_INVALID_ERROR_MESSAGE, nameof(hostName));
-            }
-            Add(HOST, hostName);
+            Add(HOST, Environment.MachineName);
         }
 
         public override int GetHashCode()

@@ -13,7 +13,7 @@ namespace OpenTsdb.Net.Test.TagsCollectionFixtures
         [TestInitialize]
         public void Setup()
         {
-            tagsCollection = new TagsCollection();
+            tagsCollection = TagsCollection.New();
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace OpenTsdb.Net.Test.TagsCollectionFixtures
         [TestMethod]
         public void When_ComparedToSame_ThenEqual()
         {
-            Assert.IsTrue(tagsCollection.Equals(new TagsCollection()));
+            Assert.IsTrue(tagsCollection.Equals(TagsCollection.New()));
         }
 
         [TestMethod]

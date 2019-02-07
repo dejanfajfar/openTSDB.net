@@ -16,13 +16,19 @@ namespace OpenTsdb.Net.Test.TagsCollectionFixtures
         [TestInitialize]
         public void Setup()
         {
-            tagsCollection = new TagsCollection(HostName);
+            tagsCollection = TagsCollection.New(HostName);
         }
 
         [TestMethod]
         public void Then_HostNameSet()
         {
             Assert.AreEqual(tagsCollection[TagsCollection.HOST],HostName);
+        }
+        
+        [TestMethod]
+        public void Then_MarkedAsArtificialHost()
+        {
+            Assert.AreEqual(tagsCollection[TagsCollection.HOST_ARTIFICIAL], "true");   
         }
 
         [TestMethod]
@@ -54,13 +60,14 @@ namespace OpenTsdb.Net.Test.TagsCollectionFixtures
         }
 
         [TestMethod]
-        public void When_ExtendedWithANonColidingCollection_Then_BouthTagCollectionJoined()
+        public void When_ExtendedWithANonCollidingCollection_Then_BoughTagCollectionJoined()
         {
-            var extendedCollection = tagsCollection.ExtendWith(new TagsCollection
-            {
-                {"01", "01"},
-                {"02", "02"}
-            });
+            var deltaCollection = TagsCollection
+                .New()
+                .SetTag("01", "01")
+                .SetTag("02", "02");
+            
+            var extendedCollection = tagsCollection.ExtendWith(deltaCollection);
 
             Assert.IsTrue(extendedCollection.ContainsKey(TagsCollection.HOST));
             Assert.IsTrue(extendedCollection.ContainsKey("01"));

@@ -36,6 +36,6 @@ namespace OpenTsdbNet.models
         /// A key/value metadata list.
         /// </summary>
         [DataMember(Name = "tags", Order = 99)]
-        public TagsCollection Tags { get; set; } = new TagsCollection();
+        public TagsCollection Tags { get; set; } = TagsCollection.New();
     }
 }

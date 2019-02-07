@@ -22,7 +22,7 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
                 Value = 15,
                 Metric = "testMetric",
                 Timestamp = new DateTime(2015, 12, 12, 0, 0, 0, DateTimeKind.Utc).ToRawEpoch(),
-                Tags = new TagsCollection("testHost")
+                Tags = TagsCollection.New("testHost")
             };
 
             CollectionAssert.AreEqual(dataPoint.Bytify(), Encoding.UTF8.GetBytes(sampleDataPoint));
@@ -41,14 +41,14 @@ namespace OpenTsdb.Net.Test.DataPointFixtures
                     Value = 15,
                     Metric = "testMetric",
                     Timestamp = new DateTime(2015, 12, 12, 0, 0, 0, DateTimeKind.Utc).ToRawEpoch(),
-                    Tags = new TagsCollection("testHost")
+                    Tags = TagsCollection.New("testHost")
                 },
                 new DataPoint<int>
                 {
                     Value = 14,
                     Metric = "testMetric",
                     Timestamp = new DateTime(2015, 12, 12, 0, 0, 0, DateTimeKind.Utc).ToRawEpoch(),
-                    Tags = new TagsCollection("testHost")
+                    Tags = TagsCollection.New("testHost")
                 }
             };
 
