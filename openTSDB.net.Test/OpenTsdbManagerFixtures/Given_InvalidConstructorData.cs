@@ -1,6 +1,5 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using openTSDB.net;
 using OpenTsdbNet;
 using OpenTsdbNet.models;
 using OpenTsdbNet.Network;
@@ -24,7 +23,7 @@ namespace OpenTsdb.Net.Test.OpenTsdbManagerFixtures
         {
             Assert.ThrowsException<ArgumentNullException>(() =>
             {
-                new OpenTsdbManager(new TsdbOptions(new Uri("http://localhost"), "test"), null);
+                new OpenTsdbManager(TsdbOptions.New("http://localhost"), null);
             });
         }
     }

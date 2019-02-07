@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Epoch.net;
 using OpenTsdbNet.models;
 using OpenTsdbNet.Network;
-using ErrorMessages = OpenTsdbNet.ErrorMessages;
 
 namespace OpenTsdbNet
 {

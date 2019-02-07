@@ -6,7 +6,7 @@ using OpenTsdbNet;
 using OpenTsdbNet.models;
 using OpenTsdbNet.Network;
 
-namespace openTSDB.net.Tests.OpenTsdbManagerFixtures
+namespace OpenTsdb.Net.Test.OpenTsdbManagerFixtures
 {
     [TestClass]
     public class Given_ValidManager
@@ -18,7 +18,7 @@ namespace openTSDB.net.Tests.OpenTsdbManagerFixtures
         public void Setup()
         {
             bridgeMock = new Mock<IOpenTsdbNetworkBridge>();
-            manager = new OpenTsdbManager(new TsdbOptions(new Uri("http://localhost"), "test"), bridgeMock.Object);
+            manager = new OpenTsdbManager(TsdbOptions.New("http://localhost"), bridgeMock.Object);
         }
 
         [TestMethod]

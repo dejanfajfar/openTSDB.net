@@ -25,7 +25,7 @@ namespace OpenTsdbNet
         /// </summary>
         /// <param name="options"></param>
         /// <returns>A new instance of </returns>
-        public static IOpenTsdbManager Instance(TsdbOptions options) => new OpenTsdbManager(options, new OpenTsdbIntegration(options.OpenTsdbServerUri));
+        public static IOpenTsdbManager Instance(TsdbOptions options) => new OpenTsdbManager(options, new OpenTsdbIntegration(options.ServerUri));
 
 
         /// <summary>

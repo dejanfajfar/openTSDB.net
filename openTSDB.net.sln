@@ -15,6 +15,7 @@ ProjectSection(SolutionItems) = preProject
 	appveyor.yml = appveyor.yml
 	LICENSE = LICENSE
 	README.md = README.md
+	.gitignore = .gitignore
 EndProjectSection
 EndProject
 Global

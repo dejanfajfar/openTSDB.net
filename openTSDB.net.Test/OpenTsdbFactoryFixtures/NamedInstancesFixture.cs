@@ -22,7 +22,7 @@ namespace OpenTsdb.Net.Test.OpenTsdbFactoryFixtures
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                OpenTsdbFactory.Instance(new TsdbOptions(new Uri("http://localhost"), "Test"), nameInput);
+                OpenTsdbFactory.Instance(TsdbOptions.New("http://localhost"), nameInput);
             });
         }
 
@@ -38,9 +38,9 @@ namespace OpenTsdb.Net.Test.OpenTsdbFactoryFixtures
         [TestMethod]
         public void CreateNamedInstance_DuplicateName_SameInstanceReturned()
         {
-            var originalInstance = OpenTsdbFactory.Instance(new TsdbOptions(new Uri("http://localhost"), "Test"), "test");
+            var originalInstance = OpenTsdbFactory.Instance(TsdbOptions.New("http://localhost"), "test");
             
-            var secondInstance = OpenTsdbFactory.Instance(new TsdbOptions(new Uri("http://localhost"), "Test"), "test");
+            var secondInstance = OpenTsdbFactory.Instance(TsdbOptions.New("http://localhost"), "test");
             
             Assert.AreSame(originalInstance, secondInstance);
         }
@@ -48,7 +48,7 @@ namespace OpenTsdb.Net.Test.OpenTsdbFactoryFixtures
         [TestMethod]
         public void CreateNamedInstance_ValidOptions_InstanceCreated()
         {
-            var manager = OpenTsdbFactory.Instance(new TsdbOptions(new Uri("http://localhost"), "Test"), "test");
+            var manager = OpenTsdbFactory.Instance(TsdbOptions.New("http://localhost"), "test");
             
             Assert.IsNotNull(manager);
         }
@@ -65,7 +65,7 @@ namespace OpenTsdb.Net.Test.OpenTsdbFactoryFixtures
         [TestMethod]
         public void IsNamedDefined_ExistingName_True()
         {
-            OpenTsdbFactory.Instance(new TsdbOptions(new Uri("http://localhost"), "Test"), "test");
+            OpenTsdbFactory.Instance(TsdbOptions.New("http://localhost"), "test");
 
             Assert.IsTrue(OpenTsdbFactory.IsInstanceDefined("test"));
         }

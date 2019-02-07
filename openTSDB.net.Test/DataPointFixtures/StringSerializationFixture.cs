@@ -2,7 +2,6 @@
 using System.IO;
 using Epoch.net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using openTSDB.net;
 using OpenTsdbNet;
 using OpenTsdbNet.models;
 

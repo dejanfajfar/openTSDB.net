@@ -15,7 +15,7 @@ namespace OpenTsdb.Net.Test.Integration
         public void SubmitSinglePointData()
         {
             var pushResult = OpenTsdbFactory
-                .Instance(new TsdbOptions(new Uri(_openTsdbUrl), "DFMac01"))
+                .Instance(TsdbOptions.New(_openTsdbUrl))
                 .PushAsync("ping", new Random().Next());
 
             Assert.AreEqual(pushResult.Result.ResponseHttpStatusCode, 204);

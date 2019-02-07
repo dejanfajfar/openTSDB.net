@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using openTSDB.net;
 using OpenTsdbNet;
 using OpenTsdbNet.models;
 
@@ -20,7 +19,7 @@ namespace OpenTsdb.Net.Test.TagsCollectionFixtures
         [TestMethod]
         public void Then_DefaultHostNameShouldBeSet()
         {
-            Assert.AreEqual(tagsCollection.GetHost(), TagsCollection.UNKWNOWN);
+            Assert.AreEqual(Environment.MachineName, tagsCollection.GetHost());
         }
 
         [TestMethod]

@@ -31,6 +31,15 @@
       <Content Include="DataPointFixtures\DataPointSample.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="TsdbOptionsFixtures\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="TsdbOptionsFixtures\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="TsdbOptionsFixtures\**" />
     </ItemGroup>
 
 </Project>
