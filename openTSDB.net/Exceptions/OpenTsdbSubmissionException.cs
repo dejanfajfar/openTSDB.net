@@ -2,9 +2,6 @@
 
 namespace OpenTsdbNet.Exceptions
 {
-    /// <summary>
-    /// Thrown when a data point submission to the openTSDB server fails
-    /// </summary>
     public class OpenTsdbSubmissionException : Exception
     {
         public OpenTsdbSubmissionException(int httpStatus, string responseMessage, Uri openTsdbUri)
