@@ -6,16 +6,16 @@
 
 * * *
 
-[![codecov](https://codecov.io/gh/dejanfajfar/openTSDB.net/branch/master/graph/badge.svg)](https://codecov.io/gh/dejanfajfar/openTSDB.net)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/pkru2h61f9cxegy6/branch/master?svg=true)](https://ci.appveyor.com/project/dejanfajfar/opentsdb-net-985f2/branch/master)
+[![](https://img.shields.io/nuget/v/opentsdb.net.svg)](https://www.nuget.org/packages/Epoch.net/)
+![](https://img.shields.io/nuget/dt/opentsdb.net.svg)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/pjcln0nojvv3lapp?svg=true)](https://ci.appveyor.com/project/dejanfajfar/opentsdb-net)
-
-# Introduction
+## Introduction
 
 openTSDB.net is a low weight, low impact implementation of a application to OpenTSDB bridge.
 
-## Scope
+### Scope
 
 Although the openTSDB API is powerfull this library concentrates on one thing. 
 
@@ -23,60 +23,72 @@ Although the openTSDB API is powerfull this library concentrates on one thing.
 
 This is the only concern of this library. If you want a more _complete_ interaction model then please contact me.
 
-# Installation
+## Installation
 
-## NuGet
+### NuGet
 
 ```bash
 PM> Install-Package openTSDB.net
 ```
 
-## From code
+## Glossary
 
-You can clone the project in into your local solution and use it as this. 
+| Term | Definition |
+|----|----|
+| Named instance | A instance of the __manager__ that can be accessed using a globally unique name and the same instance shared by many |
+| Anonymous instance | A instance of the __manager__ that can not be accessed using a name and therefore can not be retrieved multiple time from the __factory__ |
+| Manager | The openTsdb factory is the entry point of the library, but the __manager__ is the core implementation and object that the __client__ is interacting with |
 
-This day in age this is highly discouraged. 
+## Getting started
 
-# Usage
+Hit the ground running
 
-## Common setup
+### Working the factory
 
-Before we can publish data to the openTSDB we have to provide some information, and initialaze a factory.
+_OpenTsdb.net_ uses a factory pattern to provide "unknown" and named instances of the __manager__.
 
-```csharp
-var tsdbManager = OpenTsdbFactory.TsdbManager(new TsdbOptions
-{
-    OpenTsdbServerUri = new Uri({openTsdbURI}),
-    DefaultTags = new TagsCollection({hostName})
-})
+#### Named instances
+
+```c#
+var tsdbManager = OpenTsdbFactory.Instance(TsdbOptions.New("http://localhost:4242"), "myInstance");
 ```
 
-Two things have to be provided:
-* __openTsdbURI__ : location of the openTSDB without the api relative part
-* __hostName__ : the name of the host from which the data is published has to be provided.
+Where __myInstance__ is the instance identifier. 
 
-## Publlish single data point 
+If the instance was already initialized by someone else then the same instance will be returned.
 
-There a two ways to publish a data point:
-* by creating the data point instance and sending it
-* using the shorthand method
+#### Anonymous instance
 
-### Create data point instance
+```c#
+var tsdbManager = OpenTsdbFactory.Instance(TsdbOptions.New("http://localhost:4242"));
+``` 
 
-```cshap
+### Publishing data
+
+The point of this all is to get data into the openTSDB database. 
+
+This can be done...
+
+#### Quick and easy
+
+If we want to publish only one data point then this can easily be achieved by 
+
+```c#
+tsdbManager.PushAsync<int>("login", 1);
+``` 
+
+#### More control more code
+
+There is also a longer way that provides more control over the data transmitted.
+
+```c#
 var dataPoint = new DataPoint<int>
 {
-    Value = {metricValue},
-    Metric = "{metricName}",
+    Value = 23,
+    Metric = "user_age",
     Timestamp = DateTime.Now.ToEpoch(),
     Tags = new TagsCollection()
 };
 
-var result = tsdbManager.Push(dataPoint);
-```
-
-### Shorthand method
-
-```csharp
-var result = tsdbManager.Push({metricName}, {metricValue});
+var result = tsdbManager.PushAsync<int>(dataPoint);
 ```
