@@ -3,6 +3,21 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>OpenTsdbNet</RootNamespace>
+        <id>openTSDB.net</id>
+        <version>1.0.0</version>
+        <authors>dejan@fajfar.com</authors>
+        <owners>dejan@fajfar.com</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <summary>Simple openTSDB client for .net projects</summary>
+        <description>
+            Implements a simple facade to store data into a OpenTSDB database
+        </description>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <PackageIconUrl>https://raw.githubusercontent.com/dejanfajfar/openTSDB.net/master/doc/logo_200x200.png</PackageIconUrl>
+        <PackageTags>open tsdb facade time series .net core standard</PackageTags>
+        <PackageProjectUrl>https://github.com/dejanfajfar/openTSDB.net</PackageProjectUrl>
     </PropertyGroup>
 
 
