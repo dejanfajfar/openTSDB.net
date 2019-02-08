@@ -21,5 +21,5 @@ test_script:
 
       dotnet pack ./openTSDB.net/openTSDB.net.csproj --configuration Release --output nupkgs
 artifacts:
-  - path: Epoch.net/nupkgs/*
+  - path: openTSDB.net/nupkgs/*
     name: nuGet
