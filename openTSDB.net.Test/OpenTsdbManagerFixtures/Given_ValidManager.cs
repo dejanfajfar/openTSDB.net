@@ -1,52 +1,54 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using NUnit.Framework;
-using openTSDB.net.Models;
-using openTSDB.net.Network;
+using OpenTsdbNet;
+using OpenTsdbNet.models;
+using OpenTsdbNet.Network;
 
-namespace openTSDB.net.Tests.OpenTsdbManagerFixtures
+namespace OpenTsdb.Net.Test.OpenTsdbManagerFixtures
 {
-    [TestFixture]
+    [TestClass]
     public class Given_ValidManager
     {
         private IOpenTsdbManager manager;
         private Mock<IOpenTsdbNetworkBridge> bridgeMock;
         
-        [SetUp]
+        [TestInitialize]
         public void Setup()
         {
             bridgeMock = new Mock<IOpenTsdbNetworkBridge>();
-            manager = new OpenTsdbManager(new TsdbOptions(new Uri("http://localhost"), "test"), bridgeMock.Object);
+            manager = new OpenTsdbManager(TsdbOptions.New("http://localhost"), bridgeMock.Object);
         }
 
-        [TestCase("")]
-        [TestCase(" ")]
-        [TestCase(null)]
+        [TestMethod]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow(null)]
         public void PushAsyncShorthand_InvalidName_ArgumentException(string nameInput)
         {
-            Assert.That(async () =>
+            Assert.ThrowsExceptionAsync<ArgumentException>(async () =>
             {
                 await manager.PushAsync(nameInput, 42);
-            }, Throws.ArgumentException);
+            });
         }
 
-        [Test]
+        [TestMethod]
         public void PushAsyncDataPoint_NullDataPoint_ArgumentNullException()
         {
-            Assert.That(async () =>
+            Assert.ThrowsExceptionAsync<ArgumentNullException> (async () =>
             {
                 await manager.PushAsync((DataPoint<int>)null);
-            }, Throws.ArgumentNullException);
+            });
         }
 
-        [Test]
+        [TestMethod]
         public void PushAsyncDataPoints_NullDataPoints_ArgumentNullException()
         {
-            Assert.That(async () =>
+            Assert.ThrowsExceptionAsync<ArgumentNullException>(async () =>
             {
                 await manager.PushAsync((IList<DataPoint<int>>)null);
-            }, Throws.ArgumentNullException);
+            });
         }
     }
 }

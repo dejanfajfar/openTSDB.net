@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace openTSDB.net.Models
+namespace OpenTsdbNet.models
 {
     /// <summary>
     /// Defines a key/value metadata colection used for openTSDB data submission
@@ -14,36 +14,31 @@ namespace openTSDB.net.Models
         /// </summary>
         public const string HOST = "host";
 
+        public const string HOST_ARTIFICIAL = "host_artificial";
+
         /// <summary>
         /// Defines the UNKNOWN constant
         /// </summary>
         public const string UNKWNOWN = "unknown";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TagsCollection"/>
-        /// with the host set to UNKNOWN
-        /// </summary>
-        /// <remarks>
-        /// A Tag collection must contain at least one key value pair and that is the HOST name
-        /// This constructor sets the host name to UNKNOWN
-        /// </remarks>
-        public TagsCollection() : this(UNKWNOWN) {}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TagsCollection"/>
-        /// with the provided host name
-        /// </summary>
-        /// <param name="hostName">The host name to set for this tags collection</param>
-        /// <exception cref="ArgumentException">
-        /// If the host name is null or containing only whitespaces
-        /// </exception>
-        public TagsCollection(string hostName)
+        public static TagsCollection New()
         {
-            if (string.IsNullOrWhiteSpace(hostName))
-            {
-                throw new ArgumentException(ErrorMessages.HOST_NAME_INVALID_ERROR_MESSAGE, nameof(hostName));
-            }
-            Add(HOST, hostName);
+            return new TagsCollection();
+        }
+
+        public static TagsCollection New(string machineName)
+        {
+            var instance = new TagsCollection();
+            instance.Add(HOST_ARTIFICIAL, "true");
+            instance.SetHost(machineName);
+
+            return instance;
+        }
+
+        
+        protected TagsCollection()
+        {
+            Add(HOST, Environment.MachineName);
         }
 
         public override int GetHashCode()

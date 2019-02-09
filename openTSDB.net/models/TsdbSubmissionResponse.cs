@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace openTSDB.net.Models
+namespace OpenTsdbNet.models
 {
     /// <summary>
     /// Data submission response

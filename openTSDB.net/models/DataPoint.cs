@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace openTSDB.net.Models
+namespace OpenTsdbNet.models
 {
     /// <summary>
     /// Defines a single data point that can be submitted to the openTSDB server
@@ -36,6 +36,6 @@ namespace openTSDB.net.Models
         /// A key/value metadata list.
         /// </summary>
         [DataMember(Name = "tags", Order = 99)]
-        public TagsCollection Tags { get; set; } = new TagsCollection();
+        public TagsCollection Tags { get; set; } = TagsCollection.New();
     }
 }

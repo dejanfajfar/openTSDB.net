@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Epoch.net;
-using openTSDB.net.Models;
-using openTSDB.net.Network;
+using OpenTsdbNet.models;
+using OpenTsdbNet.Network;
 
-namespace openTSDB.net
+namespace OpenTsdbNet
 {
     public class OpenTsdbManager : IOpenTsdbManager
     {
@@ -24,7 +24,7 @@ namespace openTSDB.net
             {
                 throw new ArgumentNullException(ErrorMessages.DATA_POINT_NULL, nameof(dataPoint));
             }
-            return await TsdbServer.PublishDataAsync(dataPoint.Bytify());
+            return await TsdbServer.PublishDataAsync(dataPoint.AsByteArray());
 
         }
 
@@ -34,7 +34,7 @@ namespace openTSDB.net
             {
                 throw new ArgumentNullException(ErrorMessages.DATA_POINT_NULL, nameof(dataPoints));
             }
-            return await TsdbServer.PublishDataAsync(dataPoints.Bytify());
+            return await TsdbServer.PublishDataAsync(dataPoints.AsByteArray());
         }
 
         public async Task<TsdbSubmissionResponse> PushAsync<T>(string name, T value)
@@ -47,7 +47,7 @@ namespace openTSDB.net
             {
                 Metric = name,
                 Value = value,
-                Timestamp = DateTime.Now.ToEpoch(),
+                Timestamp = DateTime.Now.ToRawEpoch(),
                 Tags = Options.DefaultTags
             });
         }

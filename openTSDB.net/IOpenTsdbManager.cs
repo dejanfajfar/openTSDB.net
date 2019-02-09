@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using openTSDB.net.Models;
+using OpenTsdbNet.models;
 
-namespace openTSDB.net
+namespace OpenTsdbNet
 {
     /// <summary>
     /// Defines the openTSDB management interface

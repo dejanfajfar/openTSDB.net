@@ -1,9 +1,8 @@
 ﻿using System;
-using openTSDB.net.Models;
 
-namespace openTSDB.net
+namespace OpenTsdbNet.models
 {
-    public static class TagsCollectionExtentions
+    public static class TagsCollectionExtensions
     {
         public static TagsCollection SetTag(this TagsCollection tagsCollection, string tagName, string tagValue)
         {

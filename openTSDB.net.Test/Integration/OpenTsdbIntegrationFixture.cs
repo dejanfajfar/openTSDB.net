@@ -1,23 +1,24 @@
 ﻿using System;
-using NUnit.Framework;
-using openTSDB.net.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenTsdbNet;
+using OpenTsdbNet.models;
 
-namespace openTSDB.net.Tests.Integration
+namespace OpenTsdb.Net.Test.Integration
 {
-    [TestFixture]
+    [TestClass]
     public class OpenTsdbIntegrationFixture
     {
         private const string _openTsdbUrl = "http://11.0.0.101:4242";
 
-        [Test]
+        [TestMethod]
         [Ignore("Only for integration purposes. !! Must refactor !!")]
         public void SubmitSinglePointData()
         {
             var pushResult = OpenTsdbFactory
-                .CreateNew(new TsdbOptions(new Uri(_openTsdbUrl), "DFMac01"))
+                .Instance(TsdbOptions.New(_openTsdbUrl))
                 .PushAsync("ping", new Random().Next());
 
-            Assert.That(pushResult.Result.ResponseHttpStatusCode, Is.EqualTo(204));
+            Assert.AreEqual(pushResult.Result.ResponseHttpStatusCode, 204);
         }
     }
 }
